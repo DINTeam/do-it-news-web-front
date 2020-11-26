@@ -1,0 +1,9 @@
+.header {
+  height: 60px;
+}
+
+.header__link {
+  font-size: 2rem;
+  border: 2px solid black;
+  margin-right: 30px;
+}
