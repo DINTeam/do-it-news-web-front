@@ -1,0 +1,42 @@
+.button {
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.small {
+  padding: 5px 10px;
+  font-size: 10px;
+  border: 3px solid;
+}
+
+.medium {
+  padding: 10px 20px;
+  font-size: 20px;
+  border: 3px solid;
+}
+
+.large {
+  padding: 20px 40px;
+  font-size: 40px;
+  border: 3px solid;
+}
+
+.primaryColor {
+  background-color: #3976c9;
+  color: white;
+  border-color: #3976c9;
+}
+
+.secondaryColor {
+  background-color: white;
+  color: #3976c9;
+  border-color: white;
+}
+
+.fullWidth {
+  width: 100%;
+}
