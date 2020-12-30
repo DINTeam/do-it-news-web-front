@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 import styles from './logo.module.css';
 
+
 const getSizeStyle = size => {
   if (size === 'small') return styles.small;
   if (size === 'medium') return styles.medium;
