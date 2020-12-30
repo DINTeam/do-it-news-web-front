@@ -10,13 +10,6 @@ const getSizeStyle = size => {
   return false;
 };
 
-// const getColorStyle = color => {
-//   if (color === 'primary') return styles.primaryColor;
-//   if (color === 'secondary') return styles.secondaryColor;
-//
-//   return false;
-// };
-
 const Logo = props => {
   const { size } = props;
 
