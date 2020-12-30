@@ -10,13 +10,6 @@ const getSizeStyle = size => {
   return false;
 };
 
-// const getColorStyle = color => {
-//   if (color === 'primary') return styles.primaryColor;
-//   if (color === 'secondary') return styles.secondaryColor;
-//
-//   return false;
-// };
-
 const Logo = props => {
   const { size } = props;
 
@@ -24,7 +17,7 @@ const Logo = props => {
 
   return (
     <div>
-      <h className={`${sizeStyle} ${styles.primaryColor}`}>Do</h>
+      <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>Do</h>
       <h className={`${sizeStyle} ${styles.primaryColor}`}> it N</h>
       <h className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h>
     </div>
@@ -33,12 +26,10 @@ const Logo = props => {
 
 Logo.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  // color: PropTypes.oneOf(['primary', 'secondary']),
 };
 
 Logo.defaultProps = {
   size: 'medium',
-  // color: 'primary',
 };
 
 export default Logo;
