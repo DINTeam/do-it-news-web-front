@@ -1,0 +1,23 @@
+.small {
+    font-size: 10px;
+}
+
+.medium {
+    font-size: 20px;
+}
+
+.large {
+    font-size: 40px;
+}
+
+.primaryColor {
+    background-color: #3976c9;
+    color: white;
+    border-color: #3976c9;
+}
+
+.secondaryColor {
+    background-color: white;
+    color: #3976c9;
+    border-color: white;
+}
