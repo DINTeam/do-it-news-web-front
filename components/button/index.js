@@ -13,7 +13,7 @@ const getSizeStyle = size => {
 const getColorStyle = color => {
   if (color === 'primary') return styles.primaryColor;
   if (color === 'secondary') return styles.secondaryColor;
-  if (color === 'signUp') return styles.signUpColor;
+  if (color === 'next') return styles.nextColor;
 
   return false;
 };
