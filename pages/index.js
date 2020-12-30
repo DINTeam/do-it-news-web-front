@@ -1,12 +1,11 @@
 import Header from '../components/header';
-import Button from '../components/button';
+import Logo from '../components/logo';
 
 const Home = () => {
   return (
     <div>
       <Header />
-      <h1>Hello world!</h1>
-      <Button value="Login" size="large" onClick={() => console.log('hello')} />
+      <Logo size="medium" />
     </div>
   );
 };
