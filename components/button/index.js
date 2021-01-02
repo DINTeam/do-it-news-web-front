@@ -13,7 +13,7 @@ const getSizeStyle = size => {
 const getColorStyle = color => {
   if (color === 'primary') return styles.primaryColor;
   if (color === 'secondary') return styles.secondaryColor;
-  if (color === 'next') return styles.nextColor;
+  if (color === 'tertiary') return styles.tertiaryColor;
 
   return false;
 };
@@ -38,7 +38,7 @@ Button.propTypes = {
   value: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   fullWidth: PropTypes.bool,
 };
 
