@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 
 import styles from './logo.module.css';
-
 
 const getSizeStyle = size => {
   if (size === 'small') return styles.small;
@@ -12,25 +12,41 @@ const getSizeStyle = size => {
 };
 
 const Logo = props => {
-  const { size } = props;
+  const { size, active } = props;
 
   const sizeStyle = getSizeStyle(size);
 
   return (
-    <div className={`${styles.select}`}>
-      <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>Do</h>
-      <h className={`${sizeStyle} ${styles.primaryColor}`}> it N</h>
-      <h className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h>
+    <div>
+      {active ? (
+        <Link href="/main">
+          <div>
+            <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>
+              Do
+            </h>
+            <h className={`${sizeStyle} ${styles.primaryColor}`}> it N</h>
+            <h className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h>
+          </div>
+        </Link>
+      ) : (
+        <div>
+          <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>Do</h>
+          <h className={`${sizeStyle} ${styles.primaryColor}`}> it N</h>
+          <h className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h>
+        </div>
+      )}
     </div>
   );
 };
 
 Logo.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  active: PropTypes.bool,
 };
 
 Logo.defaultProps = {
   size: 'medium',
+  active: false,
 };
 
 export default Logo;
