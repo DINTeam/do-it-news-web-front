@@ -17,7 +17,7 @@ const Logo = props => {
   const sizeStyle = getSizeStyle(size);
 
   return (
-    <div>
+    <div className={`${styles.select}`}>
       <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>Do</h>
       <h className={`${sizeStyle} ${styles.primaryColor}`}> it N</h>
       <h className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h>
