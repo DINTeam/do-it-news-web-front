@@ -8,6 +8,10 @@
   outline: 0;
 }
 
+.button:hover {
+  box-shadow: 2px 2px 2px gray;
+}
+
 .small {
   padding: 5px 50px;
   font-size: 13px;
@@ -35,15 +39,15 @@
 .secondaryColor {
   background-color: white;
   color: #3976c9;
-  border-color: white;
+  border-color: #E5E5E5;
 }
 
-.nextColor {
+.tertiaryColor {
   background-color: white;
   color: #3976c9;
   border-color: #3976c9;
 }
 
 .fullWidth {
-  width: 100%;
+  width: 100vw;
 }
