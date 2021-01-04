@@ -11,7 +11,16 @@ const getWidthStyle = size => {
 };
 
 const Textfield = props => {
-  const { label, active, placeholder, multiLine, width, fullWidth } = props;
+  const {
+    value,
+    onChange,
+    label,
+    active,
+    placeholder,
+    multiLine,
+    width,
+    fullWidth,
+  } = props;
 
   const widthStyle = getWidthStyle(width);
 
@@ -19,25 +28,40 @@ const Textfield = props => {
     return (
       <div>
         {active ? (
-          <textarea className={`${styles.textarea}`} />
+          <textarea
+            value={`${value}`}
+            onChange={onChange}
+            className={`${styles.textarea}`}
+          />
         ) : (
-          <textarea className={`${styles.textarea}`} readOnly />
+          <textarea
+            value={`${value}`}
+            onChange={onChange}
+            className={`${styles.textarea}`}
+            readOnly
+          />
         )}
       </div>
     );
   }
   return (
     <div>
-      <label htmlFor="text" className={`${styles.label}`}>{`${label}`}</label>
+      {!(label === '') ? (
+        <label htmlFor="text" className={`${styles.label}`}>{`${label}`}</label>
+      ) : null}
       {active ? (
         <input
           type="text"
+          value={`${value}`}
+          onChange={onChange}
           placeholder={`${placeholder}`}
           className={`${active} ${widthStyle} ${fullWidth}`}
         />
       ) : (
         <input
           type="text"
+          value={`${value}`}
+          onChange={onChange}
           placeholder={`${placeholder}`}
           className={`${active} ${widthStyle} ${fullWidth}`}
           readOnly
@@ -48,6 +72,8 @@ const Textfield = props => {
 };
 
 Textfield.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   active: PropTypes.bool,
   placeholder: PropTypes.string,
   label: PropTypes.string,
@@ -57,7 +83,8 @@ Textfield.propTypes = {
 };
 
 Textfield.defaultProps = {
-  active: false,
+  onChange: () => {},
+  active: true,
   width: 'medium',
   fullWidth: false,
   multiLine: false,
