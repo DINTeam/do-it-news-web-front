@@ -1,5 +1,7 @@
-.select {
+.logo {
     user-select: none;
+    display: inline-block;
+    margin: 1px 1px;
 }
 
 .small {
