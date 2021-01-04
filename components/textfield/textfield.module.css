@@ -1,8 +1,16 @@
 .textarea{
-    background: #E5E5E5;
-    border: none;
+    border: 1px solid #DBE2EA;
     width: 1015px;
     height: 218px;
+    border-radius: 6px;
+}
+
+.active{
+    background: #FFFFFF;
+}
+
+.non_active{
+    background: #E5E5E5;
 }
 
 .input{
@@ -48,6 +56,16 @@
     font-size: 15px;
     border: 1px solid #979797;
     border-radius: 3px;
+}
+
+.small{
+    width: 1015px;
+    height: 218px;
+}
+
+.large{
+    width: 670px;
+    height: 360px;
 }
 
 .fullWidth {
