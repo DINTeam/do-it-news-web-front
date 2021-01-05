@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import styles from './squarecheckbox.module.css';
+import styles from './squareCheckBox.module.css';
 
 const SquareCheckBox = props => {
   const { value, checked } = props;
