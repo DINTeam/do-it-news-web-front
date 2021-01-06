@@ -1,5 +1,10 @@
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getNewsList } from '../api/news';
+import LoadingSpinner from '../components/loadingSpinner';
+
+import useScroll from '../customHooks/useScroll';
+import useLoading from '../customHooks/useLoading';
 
 const CardNews = props => {
   const { news } = props;
@@ -34,14 +39,37 @@ CardNews.propTypes = {
 };
 
 const Home = props => {
-  const { success, newsList, page, amount, totalPage } = props;
+  const { ssSuccess, ssNewsList, ssPage, ssTotalPage } = props;
+
+  const [success, setSuccess] = useState(ssSuccess);
+  const [newsList, setNewsList] = useState(ssNewsList);
+  const [page, setPage] = useState(ssPage);
+  const [totalPage, setTotalPage] = useState(ssTotalPage);
+
+  const [isEnd] = useScroll();
+  const [newsListFetch, stateNewsListLoading] = useLoading(getNewsList);
+
+  useEffect(async () => {
+    if (isEnd && page < totalPage) {
+      const res = await newsListFetch(page + 1, 10);
+      if (res.success) {
+        setNewsList([...newsList, ...res.newsList]);
+        setPage(res.page);
+        setTotalPage(res.totalPage);
+      } else {
+        setSuccess(res.success);
+      }
+    }
+  }, [isEnd]);
 
   if (!success) return <div>Error</div>;
   return (
     <>
       {newsList.map(news => (
-        <CardNews key={news.newsId} news={news} />
+        // Key는 나중에 newsId로 변경
+        <CardNews key={Math.floor(Math.random() * 1000000)} news={news} />
       ))}
+      {stateNewsListLoading && <LoadingSpinner />}
     </>
   );
 };
@@ -51,14 +79,17 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      ...newsListRes,
+      ssSuccess: newsListRes.success,
+      ssNewsList: newsListRes.newsList,
+      ssPage: newsListRes.page,
+      ssTotalPage: newsListRes.totalPage,
     },
   };
 };
 
 Home.propTypes = {
-  success: PropTypes.bool.isRequired,
-  newsList: PropTypes.arrayOf(
+  ssSuccess: PropTypes.bool.isRequired,
+  ssNewsList: PropTypes.arrayOf(
     PropTypes.shape({
       author: PropTypes.string.isRequired,
       company: PropTypes.string.isRequired,
@@ -71,9 +102,8 @@ Home.propTypes = {
       likes: PropTypes.number.isRequired,
     }),
   ).isRequired,
-  page: PropTypes.number.isRequired,
-  amount: PropTypes.number.isRequired,
-  totalPage: PropTypes.number.isRequired,
+  ssPage: PropTypes.number.isRequired,
+  ssTotalPage: PropTypes.number.isRequired,
 };
 
 export default Home;
