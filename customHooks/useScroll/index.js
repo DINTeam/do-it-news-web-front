@@ -12,6 +12,7 @@ const useScroll = () => {
         clientHeight,
       } = document.documentElement;
       if (scrollTop + clientHeight >= scrollHeight - 10) setIsEnd(true);
+      else setIsEnd(false);
     };
 
     window.addEventListener('scroll', checkIsEnd);
