@@ -1,0 +1,34 @@
+.like{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-around;
+    padding-left: 20px;
+    width: 170px;
+    height: 220px;
+}
+
+.button{
+    background: none;
+    border: none;
+}
+
+.increaseBtn{
+    background-image: url("./increase.svg");
+    width: 35px;
+    height: 20px;
+}
+
+.likeNumber{
+    font-size: 30px;
+    color: #6a93cb;
+    font-weight: bold;
+}
+
+.decreaseBtn{
+    background-image: url("./decrease.svg");
+    width: 35px;
+    height: 20px;
+}
+
