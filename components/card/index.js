@@ -33,7 +33,7 @@ const Card = props => {
       {newsImg ? <NewsImage newsImg={`${newsImg}`} /> : null}
       <div className={`${styles.bottomArea}`}>
         <Contents content={`${content}`} newsImg={`${newsImg}`} />
-        <Like />
+        <Like value={`${value}`} onChange={onChange} />
       </div>
     </div>
   );
