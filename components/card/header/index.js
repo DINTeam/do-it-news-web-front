@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import Image from 'next/image';
 
 import styles from './header.module.css';
 
@@ -9,13 +8,15 @@ const Header = props => {
 
   return (
     <div className={`${styles.header}`}>
-      <div className={`${styles.leftSide}`}>
-        <div className={`${styles.profileImg}`}>{profileImg}</div>
-        <div>
-          <div className={`${styles.large}`}>{author}</div>
-          <div className={`${styles.medium}`}>{company}</div>
+      <Link href="/">
+        <div className={`${styles.leftSide}`}>
+          <div className={`${styles.profileImg}`}>{profileImg}</div>
+          <div>
+            <div className={`${styles.large}`}>{author}</div>
+            <div className={`${styles.medium}`}>{company}</div>
+          </div>
         </div>
-      </div>
+      </Link>
       <div className={`${styles.rightSide}`}>
         <div className={`${styles.shareLogo}`}>
           <Link href="/">
@@ -42,7 +43,5 @@ Header.propTypes = {
   date: PropTypes.string.isRequired,
   views: PropTypes.number.isRequired,
 };
-
-Header.defaultProps = {};
 
 export default Header;

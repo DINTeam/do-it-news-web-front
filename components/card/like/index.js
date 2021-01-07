@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './like.module.css';
 
-const Like = () => {
+const Like = props => {
+  const { value, onChange } = props;
+
   const [number, setNumber] = useState(0);
 
   const increaseNumber = () => {
@@ -17,12 +20,20 @@ const Like = () => {
     <div className={`${styles.like}`}>
       <button
         type="button"
+        value={`${value}`}
         onClick={increaseNumber}
+        onChange={onChange}
         className={`${styles.button}`}
       >
         <div className={`${styles.increaseBtn}`} />
       </button>
-      <h className={`${styles.likeNumber}`}>{number}</h>
+      <h
+        value={`${value}`}
+        onChange={onChange}
+        className={`${styles.likeNumber}`}
+      >
+        {number}
+      </h>
       <button
         type="button"
         onClick={decreaseNumber}
@@ -32,6 +43,15 @@ const Like = () => {
       </button>
     </div>
   );
+};
+
+Like.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
+};
+
+Like.defaultProps = {
+  onChange: () => {},
 };
 
 export default Like;

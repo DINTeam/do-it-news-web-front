@@ -1,16 +1,53 @@
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../button';
 
 import styles from './contents.module.css';
 
+const textLengthOverCut = (txt, img) => {
+  let text = txt;
+  if (img === 'undefined') return text;
+  if (!(img === 'undefined') && text.length > 414) {
+    text = `${text.substr(0, 414)}...`;
+    return text;
+  }
+  if (!(img === 'undefined') && text.length <= 414) {
+    return text;
+  }
+
+  return false;
+};
+
 const Contents = props => {
-  const { content } = props;
+  const { content, newsImg } = props;
+  const shortText = textLengthOverCut(`${content}`, `${newsImg}`);
+  const [text, setText] = useState(`${shortText}`);
+  const [value, setValue] = useState('더보기');
+
+  const onClickBtn = () => {
+    if (text === content) {
+      setText(textLengthOverCut(text));
+      setValue('더보기');
+    }
+    if (!(text === content)) {
+      setText(content);
+      setValue('접기');
+    }
+  };
 
   return (
     <div className={`${styles.contentsArea}`}>
-      <div className={`${styles.content}`}>{content}</div>
+      <div className={`${styles.content}`}>{`${text}`}</div>
       <div className={`${styles.moreBtn}`}>
-        <Button value="더보기" color="secondary" />
+        {!(newsImg === 'undefined') ? (
+          <Button
+            value={`${value}`}
+            color="secondary"
+            onClick={() => {
+              onClickBtn();
+            }}
+          />
+        ) : null}
       </div>
     </div>
   );
@@ -18,6 +55,7 @@ const Contents = props => {
 
 Contents.propTypes = {
   content: PropTypes.string.isRequired,
+  newsImg: PropTypes.string.isRequired,
 };
 
 export default Contents;

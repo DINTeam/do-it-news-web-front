@@ -8,6 +8,8 @@ import Like from './like';
 
 const Card = props => {
   const {
+    value,
+    onChange,
     profileImg,
     author,
     title,
@@ -28,9 +30,9 @@ const Card = props => {
         views={views}
       />
       <div className={`${styles.title}`}>{title}</div>
-      <NewsImage newsImg={newsImg} />
+      {newsImg ? <NewsImage newsImg={`${newsImg}`} /> : null}
       <div className={`${styles.bottomArea}`}>
-        <Contents content={content} />
+        <Contents content={`${content}`} newsImg={`${newsImg}`} />
         <Like />
       </div>
     </div>
@@ -38,6 +40,8 @@ const Card = props => {
 };
 
 Card.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
   author: PropTypes.string.isRequired,
   company: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -48,6 +52,8 @@ Card.propTypes = {
   content: PropTypes.string.isRequired,
 };
 
-Card.defaultProps = {};
+Card.defaultProps = {
+  onChange: () => {},
+};
 
 export default Card;

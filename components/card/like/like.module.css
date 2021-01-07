@@ -15,7 +15,7 @@
 }
 
 .increaseBtn{
-    background-image: url("./increase.svg");
+    background-image: url("http://localhost:3000/image/increase.svg");
     width: 35px;
     height: 20px;
 }
@@ -27,7 +27,7 @@
 }
 
 .decreaseBtn{
-    background-image: url("./decrease.svg");
+    background-image: url("http://localhost:3000/image/decrease.svg");
     width: 35px;
     height: 20px;
 }
