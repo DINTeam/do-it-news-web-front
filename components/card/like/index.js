@@ -4,36 +4,31 @@ import PropTypes from 'prop-types';
 import styles from './like.module.css';
 
 const Like = props => {
-  const { value, onChange } = props;
+  const { defaultLike, onClickIncrease, onClickDecrease, newsId } = props;
 
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState(`${defaultLike}`);
 
   const increaseNumber = () => {
-    setNumber(number + 1);
+    setNumber(number - -1);
+    onClickIncrease(`${newsId}`);
   };
 
   const decreaseNumber = () => {
     setNumber(number - 1);
+    onClickDecrease(`${newsId}`);
   };
 
   return (
     <div className={`${styles.like}`}>
       <button
         type="button"
-        value={`${value}`}
+        value={`${defaultLike}`}
         onClick={increaseNumber}
-        onChange={onChange}
         className={`${styles.button}`}
       >
         <div className={`${styles.increaseBtn}`} />
       </button>
-      <h
-        value={`${value}`}
-        onChange={onChange}
-        className={`${styles.likeNumber}`}
-      >
-        {number}
-      </h>
+      <h className={`${styles.likeNumber}`}>{number}</h>
       <button
         type="button"
         onClick={decreaseNumber}
@@ -46,12 +41,10 @@ const Like = props => {
 };
 
 Like.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
-};
-
-Like.defaultProps = {
-  onChange: () => {},
+  newsId: PropTypes.number.isRequired,
+  defaultLike: PropTypes.number.isRequired,
+  onClickIncrease: PropTypes.func.isRequired,
+  onClickDecrease: PropTypes.func.isRequired,
 };
 
 export default Like;

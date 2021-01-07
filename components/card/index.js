@@ -8,8 +8,9 @@ import Like from './like';
 
 const Card = props => {
   const {
-    value,
-    onChange,
+    onClickIncrease,
+    onClickDecrease,
+    defaultLike,
     profileImg,
     author,
     title,
@@ -33,15 +34,18 @@ const Card = props => {
       {newsImg ? <NewsImage newsImg={`${newsImg}`} /> : null}
       <div className={`${styles.bottomArea}`}>
         <Contents content={`${content}`} newsImg={`${newsImg}`} />
-        <Like value={`${value}`} onChange={onChange} />
+        <Like
+          defaultLike={`${defaultLike}`}
+          onClickIncrease={onClickIncrease}
+          onClickDecrease={onClickDecrease}
+        />
       </div>
     </div>
   );
 };
 
 Card.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
+  defaultLike: PropTypes.number.isRequired,
   author: PropTypes.string.isRequired,
   company: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -50,10 +54,8 @@ Card.propTypes = {
   views: PropTypes.number.isRequired,
   newsImg: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-};
-
-Card.defaultProps = {
-  onChange: () => {},
+  onClickIncrease: PropTypes.func.isRequired,
+  onClickDecrease: PropTypes.func.isRequired,
 };
 
 export default Card;

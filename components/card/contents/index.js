@@ -6,7 +6,13 @@ import styles from './contents.module.css';
 
 const textLengthOverCut = (txt, img) => {
   let text = txt;
-  if (img === 'undefined') return text;
+  if (img === 'undefined' && text.length > 1000) {
+    text = `${text.substr(0, 1000)}...`;
+    return text;
+  }
+  if (img === 'undefined' && text.length <= 1000) {
+    return text;
+  }
   if (!(img === 'undefined') && text.length > 414) {
     text = `${text.substr(0, 414)}...`;
     return text;
@@ -26,7 +32,7 @@ const Contents = props => {
 
   const onClickBtn = () => {
     if (text === content) {
-      setText(textLengthOverCut(text));
+      setText(textLengthOverCut(text, `${newsImg}`));
       setValue('더보기');
     }
     if (!(text === content)) {
@@ -39,15 +45,13 @@ const Contents = props => {
     <div className={`${styles.contentsArea}`}>
       <div className={`${styles.content}`}>{`${text}`}</div>
       <div className={`${styles.moreBtn}`}>
-        {!(newsImg === 'undefined') ? (
-          <Button
-            value={`${value}`}
-            color="secondary"
-            onClick={() => {
-              onClickBtn();
-            }}
-          />
-        ) : null}
+        <Button
+          value={`${value}`}
+          color="secondary"
+          onClick={() => {
+            onClickBtn();
+          }}
+        />
       </div>
     </div>
   );
