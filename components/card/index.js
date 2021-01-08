@@ -35,7 +35,7 @@ const Card = props => {
       <div className={`${styles.bottomArea}`}>
         <Contents content={`${content}`} newsImg={`${newsImg}`} />
         <Like
-          defaultLike={`${defaultLike}`}
+          defaultLike={defaultLike}
           onClickIncrease={onClickIncrease}
           onClickDecrease={onClickDecrease}
         />

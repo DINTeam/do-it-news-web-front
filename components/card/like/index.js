@@ -6,15 +6,15 @@ import styles from './like.module.css';
 const Like = props => {
   const { defaultLike, onClickIncrease, onClickDecrease, newsId } = props;
 
-  const [number, setNumber] = useState(`${defaultLike}`);
+  const [numberOfLikes, setNumberOfLikes] = useState(defaultLike);
 
   const increaseNumber = () => {
-    setNumber(number - -1);
+    setNumberOfLikes(numberOfLikes + 1);
     onClickIncrease(`${newsId}`);
   };
 
   const decreaseNumber = () => {
-    setNumber(number - 1);
+    setNumberOfLikes(numberOfLikes - 1);
     onClickDecrease(`${newsId}`);
   };
 
@@ -28,7 +28,7 @@ const Like = props => {
       >
         <div className={`${styles.increaseBtn}`} />
       </button>
-      <h className={`${styles.likeNumber}`}>{number}</h>
+      <h className={`${styles.likeNumber}`}>{numberOfLikes}</h>
       <button
         type="button"
         onClick={decreaseNumber}
