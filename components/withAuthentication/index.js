@@ -8,7 +8,7 @@ import * as auth from '../../helpers/auth';
 const withAuthentication = WrappedComponent => {
   const RequiresAuthentication = () => {
     useEffect(() => {
-      if (!auth.getStateSignIn()) Router.push('/signInTest');
+      if (!auth.getStateSignIn()) Router.push('/signin');
     });
 
     return auth.getStateSignIn() ? (
