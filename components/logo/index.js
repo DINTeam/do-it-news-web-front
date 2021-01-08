@@ -19,17 +19,19 @@ const Logo = props => {
   return (
     <div>
       {active ? (
-        <Link href="/main">
-          <div>
-            <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>
-              Do
-            </h>
-            <h className={`${sizeStyle} ${styles.primaryColor}`}> it N</h>
-            <h className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h>
-          </div>
+        <Link href="/main" prefetch={false}>
+          <a href="./">
+            <div className={`${styles.logo}`}>
+              <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>
+                Do
+              </h>
+              <h className={`${sizeStyle} ${styles.primaryColor}`}> it N</h>
+              <h className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h>
+            </div>
+          </a>
         </Link>
       ) : (
-        <div>
+        <div className={`${styles.logo}`}>
           <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>Do</h>
           <h className={`${sizeStyle} ${styles.primaryColor}`}> it N</h>
           <h className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h>

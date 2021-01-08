@@ -1,9 +1,54 @@
 .header {
-  height: 60px;
+  height: 100px;
 }
 
-.header__link {
-  font-size: 2rem;
-  border: 2px solid black;
-  margin-right: 30px;
+.headerArea{
+  display: flex;
+  justify-content: space-between;
+  width: 1040px;
+  margin: 0 auto;
+  padding: 40px 0 20px 0;
+}
+
+.category{
+  display: flex;
+  justify-content: space-between;
+  width: 535px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.categoryFont{
+  color: #000;
+}
+
+.headerIcon{
+  display: flex;
+}
+
+.addNews{
+  background-image: url("http://localhost:3000/image/addNews.svg");
+  width: 30px;
+  height: 30px;
+  margin-right: 25px;
+}
+
+.viewArticles{
+  background-image: url("http://localhost:3000/image/viewArticles.svg");
+  width: 29px;
+  height: 35px;
+  margin-right: 25px;
+}
+
+.viewUserInfo{
+  background-image: url("http://localhost:3000/image/viewUserInfo.svg");
+  width: 23px;
+  height: 34px;
+  margin-right: 25px;
+}
+
+.search{
+  background-image: url("http://localhost:3000/image/search.svg");
+  width: 34px;
+  height: 33px;
 }
