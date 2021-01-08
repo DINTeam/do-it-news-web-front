@@ -1,0 +1,15 @@
+.card{
+    width: 800px;
+    border: 1px solid #D1D0D0;
+    padding: 25px 45px 25px 45px;
+}
+
+.title{
+    font-size: 36px;
+    font-weight: bold;
+    padding: 20px 0 20px 0;
+}
+
+.bottomArea{
+    display: flex;
+}
