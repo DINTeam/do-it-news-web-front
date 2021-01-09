@@ -20,16 +20,18 @@ const Logo = props => {
     <div>
       {active ? (
         <Link href="/main">
-          <div>
-            <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>
-              Do
-            </h>
-            <h className={`${sizeStyle} ${styles.primaryColor}`}> it N</h>
-            <h className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h>
-          </div>
+          <a href="./">
+            <div className={`${styles.logo}`}>
+              <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>
+                Do
+              </h>
+              <h className={`${sizeStyle} ${styles.primaryColor}`}> it N</h>
+              <h className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h>
+            </div>
+          </a>
         </Link>
       ) : (
-        <div>
+        <div className={`${styles.logo}`}>
           <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>Do</h>
           <h className={`${sizeStyle} ${styles.primaryColor}`}> it N</h>
           <h className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h>
@@ -46,7 +48,7 @@ Logo.propTypes = {
 
 Logo.defaultProps = {
   size: 'medium',
-  active: false,
+  active: true,
 };
 
 export default Logo;
