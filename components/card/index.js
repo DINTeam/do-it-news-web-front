@@ -8,6 +8,7 @@ import Like from './like';
 
 const Card = props => {
   const {
+    newsId,
     onClickIncrease,
     onClickDecrease,
     defaultLike,
@@ -38,6 +39,7 @@ const Card = props => {
           defaultLike={defaultLike}
           onClickIncrease={onClickIncrease}
           onClickDecrease={onClickDecrease}
+          newsId={`${newsId}`}
         />
       </div>
     </div>
@@ -45,6 +47,7 @@ const Card = props => {
 };
 
 Card.propTypes = {
+  newsId: PropTypes.string.isRequired,
   defaultLike: PropTypes.number.isRequired,
   author: PropTypes.string.isRequired,
   company: PropTypes.string.isRequired,
