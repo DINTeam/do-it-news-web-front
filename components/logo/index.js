@@ -19,7 +19,7 @@ const Logo = props => {
   return (
     <div>
       {active ? (
-        <Link href="/main" prefetch={false}>
+        <Link href="/main">
           <a href="./">
             <div className={`${styles.logo}`}>
               <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>
@@ -48,7 +48,7 @@ Logo.propTypes = {
 
 Logo.defaultProps = {
   size: 'medium',
-  active: false,
+  active: true,
 };
 
 export default Logo;

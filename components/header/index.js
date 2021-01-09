@@ -4,38 +4,38 @@ import styles from './header.module.css';
 import Logo from '../logo';
 
 const Header = props => {
-  const { logoSize, logoActive, stateSignIn } = props;
+  const { stateSignIn } = props;
   return (
     <div className={`${styles.header}`}>
       <div className={`${styles.headerArea}`}>
-        <Logo size={`${logoSize}`} active={logoActive} />
+        <Logo />
         <div className={`${styles.category}`}>
-          <Link href="/" prefetch={false}>
+          <Link href="/">
             <a href="./" className={`${styles.categoryFont}`}>
               <h>정치</h>
             </a>
           </Link>
-          <Link href="/" prefetch={false}>
+          <Link href="/">
             <a href="./" className={`${styles.categoryFont}`}>
               <h>경제</h>
             </a>
           </Link>
-          <Link href="/" prefetch={false}>
+          <Link href="/">
             <a href="./" className={`${styles.categoryFont}`}>
               <h>사회</h>
             </a>
           </Link>
-          <Link href="/" prefetch={false}>
+          <Link href="/">
             <a href="./" className={`${styles.categoryFont}`}>
               <h>국제</h>
             </a>
           </Link>
-          <Link href="/" prefetch={false}>
+          <Link href="/">
             <a href="./" className={`${styles.categoryFont}`}>
               <h>문화</h>
             </a>
           </Link>
-          <Link href="/" prefetch={false}>
+          <Link href="/">
             <a href="./" className={`${styles.categoryFont}`}>
               <h>스포츠</h>
             </a>
@@ -43,25 +43,25 @@ const Header = props => {
         </div>
         <div className={`${styles.headerIcon}`}>
           {stateSignIn ? (
-            <Link href="/" prefetch={false}>
+            <Link href="/">
               <a href="./">
                 <div className={`${styles.addNews}`} />
               </a>
             </Link>
           ) : null}
           {stateSignIn ? (
-            <Link href="/" prefetch={false}>
+            <Link href="/">
               <a href="./">
                 <div className={`${styles.viewArticles}`} />
               </a>
             </Link>
           ) : null}
-          <Link href="/" prefetch={false}>
+          <Link href="/">
             <a href="./">
               <div className={`${styles.viewUserInfo}`} />
             </a>
           </Link>
-          <Link href="/" prefetch={false}>
+          <Link href="/">
             <a href="./">
               <div className={`${styles.search}`} />
             </a>
@@ -73,14 +73,10 @@ const Header = props => {
 };
 
 Header.propTypes = {
-  logoSize: PropTypes.oneOf(['small', 'medium', 'large']),
-  logoActive: PropTypes.bool,
   stateSignIn: PropTypes.bool,
 };
 
 Header.defaultProps = {
-  logoSize: 'medium',
-  logoActive: false,
   stateSignIn: false,
 };
 
