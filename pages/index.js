@@ -6,6 +6,7 @@ import Card from '../components/card';
 
 import useScroll from '../customHooks/useScroll';
 import useLoading from '../customHooks/useLoading';
+import CommentList from '../components/commentList';
 
 const Home = props => {
   const { ssSuccess, ssNewsList, ssPage, ssTotalPage } = props;
@@ -56,6 +57,12 @@ const Home = props => {
         />
       ))}
       {stateNewsListLoading && <LoadingSpinner />}
+      <CommentList
+        userName="User_A"
+        userId="jawoong"
+        comment="Pellentesque consectetur, lorem nec lacinia tincidunt, mauris tortor suscipit tortor, quis molestie felis ipsum in ante. Fusce viverra tortor vitae ante tincidunt, eu scelerisque elit laoreet. Proin eu ligula sed neque porta dictum. Duis nec cursus leo. In sit amet lacus suscipit purus malesuada molestie sit amet nec urna."
+        date="2021-01-10 19:37"
+      />
     </>
   );
 };
