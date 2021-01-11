@@ -14,6 +14,24 @@ const CommentList = props => {
         comment={`${comment}`}
         date={`${date}`}
       />
+      <Comment
+        userName={`${userName}`}
+        userId={`${userId}`}
+        comment={`${comment}`}
+        date={`${date}`}
+      />
+      <Comment
+        userName={`${userName}`}
+        userId={`${userId}`}
+        comment={`${comment}`}
+        date={`${date}`}
+      />
+      <Comment
+        userName={`${userName}`}
+        userId={`${userId}`}
+        comment={`${comment}`}
+        date={`${date}`}
+      />
     </div>
   );
 };
