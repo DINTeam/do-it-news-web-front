@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const useScroll = () => {
+const useScroll = offsetHeight => {
   if (typeof window === 'undefined') return [];
   const [isEnd, setIsEnd] = useState(false);
 
@@ -11,7 +11,8 @@ const useScroll = () => {
         scrollTop,
         clientHeight,
       } = document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight - 10) setIsEnd(true);
+      if (scrollTop + clientHeight >= scrollHeight - offsetHeight)
+        setIsEnd(true);
       else setIsEnd(false);
     };
 
