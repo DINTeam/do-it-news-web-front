@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 
 import styles from './comment.module.css';
 
-
-
 const Comment = props => {
   const { userName, userId, comment, date } = props;
 

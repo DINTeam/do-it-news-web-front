@@ -4,10 +4,10 @@ import Comment from './comment';
 import styles from './commentList.module.css';
 
 const CommentList = props => {
-  const { userName, userId, comment, date } = props;
+  const { commentList, userName, userId, comment, date } = props;
 
   return (
-    <div className={`${styles.commentList}`}>
+    <div className={`${styles.commentList} ${commentList}`}>
       <Comment
         userName={`${userName}`}
         userId={`${userId}`}
@@ -37,6 +37,7 @@ const CommentList = props => {
 };
 
 CommentList.propTypes = {
+  commentList: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
   comment: PropTypes.string.isRequired,
