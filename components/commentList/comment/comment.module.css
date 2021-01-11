@@ -1,0 +1,31 @@
+.commentArea{
+    border-bottom: 1px solid #545454;
+    padding: 40px 0 40px;
+}
+
+.commentUser{
+    display: flex;
+    padding-bottom: 15px;
+}
+
+.userName{
+    font-size: 30px;
+    padding-right: 10px;
+}
+
+.userId{
+    font-size: 25px;
+    color: #878787;
+    padding-top: 3px;
+}
+
+.comment{
+    font-size: 30px;
+    line-height: 40px;
+}
+
+.date{
+    font-size: 20px;
+    color: #878787;
+    padding-top: 10px;
+}

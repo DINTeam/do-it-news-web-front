@@ -6,6 +6,7 @@ import Card from '../components/card';
 
 import useScroll from '../customHooks/useScroll';
 import useLoading from '../customHooks/useLoading';
+import CommentList from '../components/commentList';
 
 const Home = props => {
   const { ssSuccess, ssNewsList, ssPage, ssTotalPage } = props;
@@ -36,6 +37,11 @@ const Home = props => {
   const decreaseNewsLike = newsId => console.log(`${newsId} down`);
 
   if (!success) return <div>Error</div>;
+  const commentList = [
+    { userName: 'User_A', userId: 'A_Id', comment: 'commentA', date: '2020' },
+    { userName: 'User_B', userId: 'B_Id', comment: 'commentB', date: '2020' },
+    { userName: 'User_C', userId: 'C_Id', comment: 'commentC', date: '2020' },
+  ];
   return (
     <>
       {newsList.map(news => (
@@ -56,6 +62,7 @@ const Home = props => {
         />
       ))}
       {stateNewsListLoading && <LoadingSpinner />}
+      <CommentList commentList={commentList} />
     </>
   );
 };
