@@ -8,6 +8,8 @@ import useScroll from '../customHooks/useScroll';
 import useLoading from '../customHooks/useLoading';
 import CommentList from '../components/commentList';
 
+const LOADING_SPINNER_HEIGHT = 100;
+
 const Home = props => {
   const { ssSuccess, ssNewsList, ssPage, ssTotalPage } = props;
 
@@ -16,8 +18,8 @@ const Home = props => {
   const [page, setPage] = useState(ssPage);
   const [totalPage, setTotalPage] = useState(ssTotalPage);
 
-  const [isEnd] = useScroll();
-  const [newsListFetch, stateNewsListLoading] = useLoading(getNewsList);
+  const [isEnd] = useScroll(LOADING_SPINNER_HEIGHT);
+  const [newsListFetch] = useLoading(getNewsList);
 
   useEffect(async () => {
     if (isEnd && page < totalPage) {
@@ -61,7 +63,7 @@ const Home = props => {
           content={news.newsContent}
         />
       ))}
-      {stateNewsListLoading && <LoadingSpinner />}
+      {!(page === totalPage) && <LoadingSpinner />}
       <CommentList commentList={commentList} />
     </>
   );
