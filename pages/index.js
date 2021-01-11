@@ -37,6 +37,11 @@ const Home = props => {
   const decreaseNewsLike = newsId => console.log(`${newsId} down`);
 
   if (!success) return <div>Error</div>;
+  const commentList = [
+    { userName: 'User_A', userId: 'A_Id', comment: 'commentA', date: '2020' },
+    { userName: 'User_B', userId: 'B_Id', comment: 'commentB', date: '2020' },
+    { userName: 'User_C', userId: 'C_Id', comment: 'commentC', date: '2020' },
+  ];
   return (
     <>
       {newsList.map(news => (
@@ -57,12 +62,7 @@ const Home = props => {
         />
       ))}
       {stateNewsListLoading && <LoadingSpinner />}
-      <CommentList
-        userName="User_A"
-        userId="jawoong"
-        comment="Pellentesque consectetur, lorem nec lacinia tincidunt, mauris tortor suscipit tortor, quis molestie felis ipsum in ante. Fusce viverra tortor vitae ante tincidunt, eu scelerisque elit laoreet. Proin eu ligula sed neque porta dictum. Duis nec cursus leo. In sit amet lacus suscipit purus malesuada molestie sit amet nec urna."
-        date="2021-01-10 19:37"
-      />
+      <CommentList commentList={commentList} />
     </>
   );
 };

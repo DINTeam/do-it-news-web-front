@@ -4,44 +4,31 @@ import Comment from './comment';
 import styles from './commentList.module.css';
 
 const CommentList = props => {
-  const { commentList, userName, userId, comment, date } = props;
+  const { commentList } = props;
 
   return (
     <div className={`${styles.commentList} ${commentList}`}>
-      <Comment
-        userName={`${userName}`}
-        userId={`${userId}`}
-        comment={`${comment}`}
-        date={`${date}`}
-      />
-      <Comment
-        userName={`${userName}`}
-        userId={`${userId}`}
-        comment={`${comment}`}
-        date={`${date}`}
-      />
-      <Comment
-        userName={`${userName}`}
-        userId={`${userId}`}
-        comment={`${comment}`}
-        date={`${date}`}
-      />
-      <Comment
-        userName={`${userName}`}
-        userId={`${userId}`}
-        comment={`${comment}`}
-        date={`${date}`}
-      />
+      {commentList.map(comment => (
+        <Comment
+          userName={comment.userName}
+          userId={comment.userId}
+          comment={comment.comment}
+          date={comment.date}
+        />
+      ))}
     </div>
   );
 };
 
 CommentList.propTypes = {
-  commentList: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
-  comment: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  commentList: PropTypes.arrayOf(
+    PropTypes.shape({
+      userName: PropTypes.string.isRequired,
+      userId: PropTypes.string.isRequired,
+      comment: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default CommentList;
