@@ -8,6 +8,8 @@ import useScroll from '../customHooks/useScroll';
 import useLoading from '../customHooks/useLoading';
 import CommentList from '../components/commentList';
 
+import News from '../objects/News';
+
 const LOADING_SPINNER_HEIGHT = 100;
 
 const Home = props => {
@@ -46,23 +48,18 @@ const Home = props => {
   ];
   return (
     <>
-      {newsList.map(news => (
-        // Key는 나중에 newsId로 변경
-        <Card
-          key={Math.floor(Math.random() * 1000000)}
-          onClickIncrease={increaseNewsLike}
-          onClickDecrease={decreaseNewsLike}
-          defaultLike={news.likes}
-          profileImg="temp"
-          author={news.author}
-          title={news.newsName}
-          company={news.company}
-          date={news.date}
-          views={news.views}
-          newsImg="temp"
-          content={news.newsContent}
-        />
-      ))}
+      {newsList.map(aNews => {
+        const news = new News(aNews);
+
+        return (
+          <Card
+            key={Math.floor(Math.random() * 1000000)}
+            onClickIncrease={increaseNewsLike}
+            onClickDecrease={decreaseNewsLike}
+            news={news}
+          />
+        );
+      })}
       {!(page === totalPage) && <LoadingSpinner />}
       <CommentList commentList={commentList} />
     </>
