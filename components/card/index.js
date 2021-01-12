@@ -6,40 +6,29 @@ import NewsImage from './newsImage';
 import Contents from './contents';
 import Like from './like';
 
+import News from '../../objects/News';
+
 const Card = props => {
-  const {
-    newsId,
-    onClickIncrease,
-    onClickDecrease,
-    defaultLike,
-    profileImg,
-    author,
-    title,
-    company,
-    date,
-    views,
-    newsImg,
-    content,
-  } = props;
+  const { onClickIncrease, onClickDecrease, news } = props;
 
   return (
-    <div className={`${styles.card}`}>
+    <div className={styles.card}>
       <Header
-        profileImg={profileImg}
-        author={author}
-        company={company}
-        date={date}
-        views={views}
+        profileImg={news.profileImg}
+        author={news.author}
+        company={news.company}
+        date={news.date}
+        views={news.views}
       />
-      <div className={`${styles.title}`}>{title}</div>
-      {newsImg ? <NewsImage newsImg={`${newsImg}`} /> : null}
-      <div className={`${styles.bottomArea}`}>
-        <Contents content={`${content}`} newsImg={`${newsImg}`} />
+      <div className={styles.title}>{news.title}</div>
+      {news.newsImg ? <NewsImage newsImg={news.newsImg} /> : null}
+      <div className={styles.bottomArea}>
+        <Contents content={news.newsContent} newsImg={news.newsImg || ''} />
         <Like
-          defaultLike={defaultLike}
+          defaultLike={news.likes}
           onClickIncrease={onClickIncrease}
           onClickDecrease={onClickDecrease}
-          newsId={`${newsId}`}
+          newsId={news.newsId}
         />
       </div>
     </div>
@@ -47,18 +36,9 @@ const Card = props => {
 };
 
 Card.propTypes = {
-  newsId: PropTypes.string.isRequired,
-  defaultLike: PropTypes.number.isRequired,
-  author: PropTypes.string.isRequired,
-  company: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  profileImg: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  views: PropTypes.number.isRequired,
-  newsImg: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
   onClickIncrease: PropTypes.func.isRequired,
   onClickDecrease: PropTypes.func.isRequired,
+  news: PropTypes.instanceOf(News).isRequired,
 };
 
 export default Card;
