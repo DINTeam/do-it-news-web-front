@@ -41,7 +41,7 @@ const Like = props => {
 };
 
 Like.propTypes = {
-  newsId: PropTypes.number.isRequired,
+  newsId: PropTypes.string.isRequired,
   defaultLike: PropTypes.number.isRequired,
   onClickIncrease: PropTypes.func.isRequired,
   onClickDecrease: PropTypes.func.isRequired,
