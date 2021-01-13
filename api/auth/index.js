@@ -10,19 +10,17 @@ const postSignInFailResponseData = {
   signIn: false,
 };
 
-export const postSignIn = (userId, userPw) => {
-  if (userId === 'admin' && userPw === '1234') {
-    return fetch.post(
-      `fakeFetch.com/signin`,
-      { userId, userPw },
-      postSignInSuccessResponseData,
-    );
+export const postSignIn = aUser => {
+  let res = postSignInFailResponseData;
+
+  if (aUser.userId === 'admin' && aUser.userPw === '1234') {
+    res = postSignInSuccessResponseData;
   }
 
   return fetch.post(
     `fakeFetch.com/signin`,
-    { userId, userPw },
-    postSignInFailResponseData,
+    { userId: aUser.userId, userPw: aUser.userPw },
+    res,
   );
 };
 
@@ -31,6 +29,10 @@ const postSignOutSuccessResponseData = {
   signOut: true,
 };
 
-export const postSignOut = () => {
-  return fetch.post(`fakeFetch.com/signout`, postSignOutSuccessResponseData);
+export const postSignOut = aUser => {
+  return fetch.post(
+    `fakeFetch.com/signout`,
+    { userId: aUser.userId },
+    postSignOutSuccessResponseData,
+  );
 };
