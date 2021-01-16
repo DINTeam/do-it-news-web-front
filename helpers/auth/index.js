@@ -26,6 +26,8 @@ export const signIn = async (intputUserId, inputUserPw) => {
   return stateSignIn;
 };
 
+export const keepSignIn = () => {};
+
 export const signOut = async () => {
   const response = await authApi.postSignIn(user);
 

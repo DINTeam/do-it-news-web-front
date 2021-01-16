@@ -5,7 +5,7 @@ const useLoading = fetchCall => {
 
   const fetchApi = async (...args) => {
     setStateLoading(true);
-    const response = await fetchCall(args);
+    const response = await fetchCall(...args);
     setStateLoading(false);
     return response;
   };
