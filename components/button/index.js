@@ -19,15 +19,15 @@ const getColorStyle = color => {
 };
 
 const Button = props => {
-  const { value, onClick, size, color, fullWidth } = props;
+  const { value, onClick, size, color, fullWidth, type } = props;
 
   const sizeStyle = getSizeStyle(size);
   const colorStyle = getColorStyle(color);
 
   return (
     <input
-      type="button"
-      value={`${value}`}
+      type={type}
+      value={value}
       onClick={onClick}
       className={`${styles.button} ${sizeStyle} ${colorStyle} ${fullWidth}`}
     />
@@ -40,6 +40,7 @@ Button.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   color: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   fullWidth: PropTypes.bool,
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
 };
 
 Button.defaultProps = {
@@ -47,6 +48,7 @@ Button.defaultProps = {
   size: 'medium',
   color: 'primary',
   fullWidth: false,
+  type: 'button',
 };
 
 export default Button;
