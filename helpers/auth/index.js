@@ -3,12 +3,15 @@ import * as localStorage from '../localStorage';
 import * as sessionStorage from '../sessionStorage';
 import User from '../../objects/User';
 
-let stateSignIn = false;
-let tempUser = new User();
+const getJwt = () => {
+  const jwt = sessionStorage.getItem('jwt') || localStorage.getItem('jwt');
+  return jwt;
+};
 
-const initState = () => {
-  stateSignIn = false;
-  tempUser = new User();
+const getUser = () => {
+  const stringUser =
+    sessionStorage.getItem('user') || localStorage.getItem('user');
+  return new User(JSON.parse(stringUser));
 };
 
 export const signIn = async (intputUserId, inputUserPw) => {
@@ -38,11 +41,14 @@ export const keepSignIn = () => {
 };
 
 export const signOut = async () => {
-  const response = await authApi.postSignIn(tempUser);
+  const response = await authApi.postSignIn(getUser());
 
-  if (response.signOut) initState();
+  if (response.signOut) {
+    sessionStorage.removeAllItem();
+    localStorage.removeAllItem();
+  }
 
-  return !stateSignIn;
+  return true;
 };
 
-export const getStateSignIn = () => stateSignIn;
+export const getStateSignIn = () => !!getJwt();
