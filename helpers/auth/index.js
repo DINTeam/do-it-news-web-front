@@ -4,12 +4,11 @@ import * as sessionStorage from '../sessionStorage';
 import User from '../../objects/User';
 
 let stateSignIn = false;
-let user = new User();
-let jwtString = '';
+let tempUser = new User();
 
 const initState = () => {
   stateSignIn = false;
-  user = new User();
+  tempUser = new User();
 };
 
 export const signIn = async (intputUserId, inputUserPw) => {
@@ -26,10 +25,20 @@ export const signIn = async (intputUserId, inputUserPw) => {
   return response.signIn;
 };
 
-export const keepSignIn = () => localStorage.setItem('jwt', jwt);
+export const keepSignIn = () => {
+  const user = sessionStorage.getItem('user');
+  const jwt = sessionStorage.getItem('jwt');
+
+  if (!(user && jwt)) return false;
+
+  localStorage.setItem('user', user);
+  localStorage.setItem('jwt', jwt);
+
+  return true;
+};
 
 export const signOut = async () => {
-  const response = await authApi.postSignIn(user);
+  const response = await authApi.postSignIn(tempUser);
 
   if (response.signOut) initState();
 
