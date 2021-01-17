@@ -28,6 +28,7 @@ const Textfield = props => {
     width,
     size,
     fullWidth,
+    type,
   } = props;
 
   const widthStyle = getWidthStyle(width);
@@ -63,7 +64,7 @@ const Textfield = props => {
       ) : null}
       {active ? (
         <input
-          type="text"
+          type={type}
           onChange={onChange}
           placeholder={placeholder}
           value={value}
@@ -71,7 +72,7 @@ const Textfield = props => {
         />
       ) : (
         <input
-          type="text"
+          type={type}
           placeholder={placeholder}
           value={value}
           className={`${styles.non_active} ${widthStyle} ${fullWidth}`}
@@ -92,6 +93,7 @@ Textfield.propTypes = {
   size: PropTypes.oneOf(['small', 'large']),
   multiLine: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 Textfield.defaultProps = {
@@ -103,6 +105,7 @@ Textfield.defaultProps = {
   multiLine: false,
   placeholder: '',
   label: '',
+  type: 'text',
 };
 
 export default Textfield;
