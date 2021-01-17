@@ -28,6 +28,7 @@ const Textfield = props => {
     width,
     size,
     fullWidth,
+    type,
   } = props;
 
   const widthStyle = getWidthStyle(width);
@@ -40,13 +41,16 @@ const Textfield = props => {
           <textarea
             onChange={onChange}
             className={`${styles.active} ${styles.textarea} ${sizeStyle} ${fullWidth}`}
-          />
+          >
+            {value}
+          </textarea>
         ) : (
           <textarea
-            onChange={onChange}
             className={`${styles.non_active} ${styles.textarea} ${sizeStyle} ${fullWidth}`}
             readOnly
-          />
+          >
+            {value}
+          </textarea>
         )}
       </div>
     );
@@ -55,21 +59,22 @@ const Textfield = props => {
     <div>
       {!(label === '') ? (
         <label htmlFor="text" className={` ${styles.label}`}>
-          {`${label}`}
+          {label}
         </label>
       ) : null}
       {active ? (
         <input
-          type="text"
+          type={type}
           onChange={onChange}
-          placeholder={`${placeholder}`}
+          placeholder={placeholder}
+          value={value}
           className={`${styles.active} ${widthStyle} ${fullWidth}`}
         />
       ) : (
         <input
-          type="text"
-          onChange={onChange}
-          placeholder={`${placeholder}`}
+          type={type}
+          placeholder={placeholder}
+          value={value}
           className={`${styles.non_active} ${widthStyle} ${fullWidth}`}
           readOnly
         />
@@ -88,6 +93,7 @@ Textfield.propTypes = {
   size: PropTypes.oneOf(['small', 'large']),
   multiLine: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 Textfield.defaultProps = {
@@ -99,6 +105,7 @@ Textfield.defaultProps = {
   multiLine: false,
   placeholder: '',
   label: '',
+  type: 'text',
 };
 
 export default Textfield;
