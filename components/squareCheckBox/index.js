@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './squareCheckBox.module.css';
 
 const SquareCheckBox = props => {
-  const { label, checked } = props;
+  const { label, checked, onChange } = props;
 
   return (
     <>
@@ -11,6 +11,7 @@ const SquareCheckBox = props => {
         type="checkbox"
         checked={checked}
         className={`${styles.checkbox}`}
+        onChange={onChange}
       />
       {label}
     </>
@@ -19,6 +20,7 @@ const SquareCheckBox = props => {
 SquareCheckBox.propTypes = {
   label: PropTypes.string.isRequired,
   checked: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
 };
 
 SquareCheckBox.defaultProps = {
