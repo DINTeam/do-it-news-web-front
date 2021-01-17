@@ -1,9 +1,10 @@
 import * as authApi from '../../api/auth';
-
+import * as localStorage from '../localStorage';
 import User from '../../objects/User';
 
 let stateSignIn = false;
 let user = new User();
+let jwtString = '';
 
 const initState = () => {
   stateSignIn = false;
@@ -26,7 +27,7 @@ export const signIn = async (intputUserId, inputUserPw) => {
   return stateSignIn;
 };
 
-export const keepSignIn = () => {};
+export const keepSignIn = () => localStorage.setItem('jwt', jwtString);
 
 export const signOut = async () => {
   const response = await authApi.postSignIn(user);
