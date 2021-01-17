@@ -40,13 +40,16 @@ const Textfield = props => {
           <textarea
             onChange={onChange}
             className={`${styles.active} ${styles.textarea} ${sizeStyle} ${fullWidth}`}
-          />
+          >
+            {value}
+          </textarea>
         ) : (
           <textarea
-            onChange={onChange}
             className={`${styles.non_active} ${styles.textarea} ${sizeStyle} ${fullWidth}`}
             readOnly
-          />
+          >
+            {value}
+          </textarea>
         )}
       </div>
     );
@@ -55,21 +58,22 @@ const Textfield = props => {
     <div>
       {!(label === '') ? (
         <label htmlFor="text" className={` ${styles.label}`}>
-          {`${label}`}
+          {label}
         </label>
       ) : null}
       {active ? (
         <input
           type="text"
           onChange={onChange}
-          placeholder={`${placeholder}`}
+          placeholder={placeholder}
+          value={value}
           className={`${styles.active} ${widthStyle} ${fullWidth}`}
         />
       ) : (
         <input
           type="text"
-          onChange={onChange}
-          placeholder={`${placeholder}`}
+          placeholder={placeholder}
+          value={value}
           className={`${styles.non_active} ${widthStyle} ${fullWidth}`}
           readOnly
         />
