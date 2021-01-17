@@ -1,8 +1,24 @@
 import fetch from '../../helpers/fakeFetch';
 
+// jwt.header = {
+//   alg: 'HS256',
+//   typ: 'JWT',
+// };
+// jwt.payload = {
+//   id: 'doitnews123',
+//   iat: 1516239022,
+//   exp: 1616239022,
+// };
+// jwt.signature = HMACSHA256(
+//   base64UrlEncode(header) + "." +
+//   base64UrlEncode(payload),
+// )
+
 const postSignInSuccessResponseData = {
   success: true,
   signIn: true,
+  jwt:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImRvaXRuZXdzMTIzIiwiaWF0IjoxNTE2MjM5MDIyLCJleHAiOjE2MTYyMzkwMjJ9.CwkNPjTm476cRn8QAcZdKI63dbrSmL2_glnzBsxJpu0',
 };
 
 const postSignInFailResponseData = {

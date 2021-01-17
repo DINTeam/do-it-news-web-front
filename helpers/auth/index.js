@@ -1,19 +1,17 @@
 import * as authApi from '../../api/auth';
 import * as localStorage from '../localStorage';
+import * as sessionStorage from '../sessionStorage';
 import User from '../../objects/User';
 
-let stateSignIn = false;
-let user = new User();
-let jwtString = '';
-
-const initState = () => {
-  stateSignIn = false;
-  user = new User();
+const getJwt = () => {
+  const jwt = sessionStorage.getItem('jwt') || localStorage.getItem('jwt');
+  return jwt;
 };
 
-const setState = aUser => {
-  stateSignIn = true;
-  user = aUser;
+export const getUser = () => {
+  const stringUser =
+    sessionStorage.getItem('user') || localStorage.getItem('user');
+  return new User(JSON.parse(stringUser));
 };
 
 export const signIn = async (intputUserId, inputUserPw) => {
@@ -22,19 +20,35 @@ export const signIn = async (intputUserId, inputUserPw) => {
   const inputUser = new User({ userId: intputUserId, userPw: cryptoPw });
   const response = await authApi.postSignIn(inputUser);
 
-  if (response.signIn) setState();
+  if (response.signIn) {
+    sessionStorage.setItem('user', JSON.stringify({ userId: intputUserId }));
+    sessionStorage.setItem('jwt', response.jwt);
+  }
 
-  return stateSignIn;
+  return response.signIn;
 };
 
-export const keepSignIn = () => localStorage.setItem('jwt', jwtString);
+export const keepSignIn = () => {
+  const user = sessionStorage.getItem('user');
+  const jwt = sessionStorage.getItem('jwt');
+
+  if (!(user && jwt)) return false;
+
+  localStorage.setItem('user', user);
+  localStorage.setItem('jwt', jwt);
+
+  return true;
+};
 
 export const signOut = async () => {
-  const response = await authApi.postSignIn(user);
+  const response = await authApi.postSignIn(getUser());
 
-  if (response.signOut) initState();
+  if (response.signOut) {
+    sessionStorage.removeAllItem();
+    localStorage.removeAllItem();
+  }
 
-  return !stateSignIn;
+  return true;
 };
 
-export const getStateSignIn = () => stateSignIn;
+export const getStateSignIn = () => !!getJwt();
