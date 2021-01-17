@@ -8,7 +8,7 @@ const getJwt = () => {
   return jwt;
 };
 
-const getUser = () => {
+export const getUser = () => {
   const stringUser =
     sessionStorage.getItem('user') || localStorage.getItem('user');
   return new User(JSON.parse(stringUser));
