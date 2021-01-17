@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Link from 'next/link';
 import Router from 'next/router';
 
+import Link from '../../components/link';
 import Header from '../../components/header';
 import Textfield from '../../components/textfield';
 import SquareCheckBox from '../../components/squareCheckBox';
@@ -13,15 +13,9 @@ import useLoading from '../../customHooks/useLoading';
 const SignInFooter = () => {
   return (
     <>
-      <Link href="/">
-        <a>아이디 찾기</a>
-      </Link>
-      <Link href="/">
-        <a>비밀번호 찾기</a>
-      </Link>
-      <Link href="/">
-        <a>회원가입</a>
-      </Link>
+      <Link href="/">아이디 찾기</Link>
+      <Link href="/">비밀번호 찾기</Link>
+      <Link href="/">회원가입</Link>
     </>
   );
 };
