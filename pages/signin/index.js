@@ -66,7 +66,7 @@ const SignIn = () => {
       <Header />
       <div>
         <h1>로그인</h1>
-        <form submit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div>
             <Textfield
               type="text"
@@ -91,7 +91,6 @@ const SignIn = () => {
           {feedbackMsg}
           <Button
             type="submit"
-            onClick={handleSubmit}
             value={stateLoading ? '잠시만 기다려주세요' : '로그인'}
             active={!stateLoading}
           />
