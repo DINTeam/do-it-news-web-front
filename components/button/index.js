@@ -19,7 +19,7 @@ const getColorStyle = color => {
 };
 
 const Button = props => {
-  const { value, onClick, size, color, fullWidth, type } = props;
+  const { value, onClick, size, color, fullWidth, type, active } = props;
 
   const sizeStyle = getSizeStyle(size);
   const colorStyle = getColorStyle(color);
@@ -41,6 +41,7 @@ Button.propTypes = {
   color: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   fullWidth: PropTypes.bool,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
+  active: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -49,6 +50,7 @@ Button.defaultProps = {
   color: 'primary',
   fullWidth: false,
   type: 'button',
+  active: true,
 };
 
 export default Button;
