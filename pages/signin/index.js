@@ -36,7 +36,7 @@ const SignIn = () => {
 
   const handleUserId = event => setUserId(event.target.value);
   const handleUserPw = event => setUserPw(event.target.value);
-  const handleKeepSignIn = event => setKeepSignIn(event.target.value);
+  const handleKeepSignIn = event => setKeepSignIn(event.target.checked);
 
   const isEmptyInput = inputVal => {
     if (inputVal) return false;
