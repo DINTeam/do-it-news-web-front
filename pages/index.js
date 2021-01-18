@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
+
 import { getNewsList } from '../api/news';
+
+import Header from '../components/header';
 import LoadingSpinner from '../components/loadingSpinner';
 import Card from '../components/card';
 
@@ -45,6 +48,7 @@ const Home = () => {
 
   return (
     <>
+      <Header />
       {newsList.map(aNews => {
         return (
           <Card
