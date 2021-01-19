@@ -11,7 +11,7 @@ import useLoading from '../customHooks/useLoading';
 
 import News from '../objects/News';
 
-const LOADING_SPINNER_HEIGHT = 100;
+const LOADING_SPINNER_HEIGHT = 142;
 
 const Home = () => {
   const [success, setSuccess] = useState(true);
