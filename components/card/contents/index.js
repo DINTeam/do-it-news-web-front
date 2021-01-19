@@ -25,7 +25,13 @@ const textLengthOverCut = (txt, img) => {
 };
 
 const Contents = props => {
-  const { content, newsImg, showHideComment, stateShowComment } = props;
+  const {
+    content,
+    newsImg,
+    showHideComment,
+    stateShowComment,
+    NoComment,
+  } = props;
   const shortText = textLengthOverCut(`${content}`, `${newsImg}`);
   const [text, setText] = useState(`${shortText}`);
   const [moreValue, setMoreValue] = useState('더보기');
@@ -41,6 +47,12 @@ const Contents = props => {
     }
   };
 
+  const showCommentState = () => {
+    if (NoComment) return '댓글 없음';
+    if (stateShowComment) return '댓글 닫기';
+    return '댓글 보기';
+  };
+
   return (
     <div className={`${styles.contentsArea}`}>
       <div className={`${styles.content}`}>{`${text}`}</div>
@@ -53,7 +65,7 @@ const Contents = props => {
         />
         <Button
           size="small"
-          value={stateShowComment ? '댓글 닫기' : '댓글 보기'}
+          value={showCommentState()}
           color="secondary"
           onClick={showHideComment}
         />
@@ -67,6 +79,7 @@ Contents.propTypes = {
   newsImg: PropTypes.string.isRequired,
   stateShowComment: PropTypes.bool.isRequired,
   showHideComment: PropTypes.func.isRequired,
+  NoComment: PropTypes.bool.isRequired,
 };
 
 export default Contents;
