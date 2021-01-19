@@ -35,6 +35,7 @@ const Card = props => {
           newsImg={news.newsImg || ''}
           showHideComment={showHideComment}
           stateShowComment={stateShowComment}
+          NoComment={commentList === null}
         />
         <Like
           defaultLike={news.likes}
@@ -43,7 +44,9 @@ const Card = props => {
           newsId={news.newsId}
         />
       </div>
-      {stateShowComment && <CommentList commentList={commentList} />}
+      {commentList && stateShowComment && (
+        <CommentList commentList={commentList} />
+      )}
     </div>
   );
 };
@@ -59,7 +62,11 @@ Card.propTypes = {
       comment: PropTypes.string.isRequired,
       date: PropTypes.string.isRequired,
     }).isRequired,
-  ).isRequired,
+  ),
+};
+
+Card.defaultProps = {
+  commentList: null,
 };
 
 export default Card;
