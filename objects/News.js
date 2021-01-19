@@ -1,5 +1,5 @@
 class News {
-  constructor(aNews) {
+  constructor(aNews = {}) {
     this._newsId = aNews.newsId || '';
     this._newsName = aNews.newsName || '';
     this._author = aNews.author || '';
