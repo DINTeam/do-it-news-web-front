@@ -1,28 +1,15 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Comment from './comment';
 
 import styles from './commentList.module.css';
-import Button from '../button';
+import Button from '../../button';
 
 const CommentList = props => {
   const { commentList } = props;
-  const [maxItems, setMaxItems] = useState(5);
-  const [moreValue, setMoreValue] = useState('댓글 더보기');
-
-  const moreBtn = () => {
-    if (maxItems > 5) {
-      setMaxItems(5);
-      setMoreValue('댓글 더보기');
-    } else {
-      setMaxItems(commentList.length);
-      setMoreValue('댓글 접기');
-    }
-  };
 
   return (
     <div className={`${styles.commentList} ${commentList}`}>
-      {commentList.slice(0, maxItems).map(comment => (
+      {commentList.map(comment => (
         <Comment
           // key는 commentId로 바꿀 예정
           key={Math.floor(Math.random() * 1000000)}
@@ -35,9 +22,8 @@ const CommentList = props => {
       <div className={`${styles.moreBtn}`}>
         <Button
           size="small"
-          value={moreValue}
+          value="댓글 더보기"
           color="secondary"
-          onClick={moreBtn}
         />
       </div>
     </div>

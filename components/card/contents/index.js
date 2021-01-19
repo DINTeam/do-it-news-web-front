@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Button from '../../button';
 
 import styles from './contents.module.css';
-import CommentList from '../../commentList';
 
 const textLengthOverCut = (txt, img) => {
   let text = txt;
@@ -26,21 +25,10 @@ const textLengthOverCut = (txt, img) => {
 };
 
 const Contents = props => {
-  const { content, newsImg } = props;
+  const { content, newsImg, showHideComment, stateShowComment } = props;
   const shortText = textLengthOverCut(`${content}`, `${newsImg}`);
   const [text, setText] = useState(`${shortText}`);
   const [moreValue, setMoreValue] = useState('더보기');
-  const [showComment, setShowComment] = useState(false);
-  const [commentValue, setCommentValue] = useState('댓글보기');
-
-  const commentList = [
-    { userName: 'User_A', userId: 'A_Id', comment: 'commentA', date: '2020' },
-    { userName: 'User_B', userId: 'B_Id', comment: 'commentB', date: '2020' },
-    { userName: 'User_C', userId: 'C_Id', comment: 'commentC', date: '2020' },
-    { userName: 'User_A', userId: 'A_Id', comment: 'commentA', date: '2020' },
-    { userName: 'User_B', userId: 'B_Id', comment: 'commentB', date: '2020' },
-    { userName: 'User_C', userId: 'C_Id', comment: 'commentC', date: '2020' },
-  ];
 
   const moreBtn = () => {
     if (text === content) {
@@ -50,17 +38,6 @@ const Contents = props => {
     if (!(text === content)) {
       setText(content);
       setMoreValue('접기');
-    }
-  };
-
-  const commentBtn = () => {
-    if (commentList.length === 0) setCommentValue('댓글 없음');
-    else if (showComment === true) {
-      setShowComment(false);
-      setCommentValue('댓글 보기');
-    } else {
-      setShowComment(true);
-      setCommentValue('댓글 닫기');
     }
   };
 
@@ -78,18 +55,11 @@ const Contents = props => {
         />
         <Button
           size="small"
-          value={commentValue}
+          value={stateShowComment ? '댓글 닫기' : '댓글 보기'}
           color="secondary"
-          onClick={() => {
-            commentBtn();
-          }}
+          onClick={showHideComment}
         />
       </div>
-      {showComment === true ? (
-        <div className={`${styles.commentList}`}>
-          <CommentList commentList={commentList} />
-        </div>
-      ) : null}
     </div>
   );
 };
@@ -97,6 +67,8 @@ const Contents = props => {
 Contents.propTypes = {
   content: PropTypes.string.isRequired,
   newsImg: PropTypes.string.isRequired,
+  stateShowComment: PropTypes.bool.isRequired,
+  showHideComment: PropTypes.func.isRequired,
 };
 
 export default Contents;

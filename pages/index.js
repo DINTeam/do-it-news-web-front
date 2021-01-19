@@ -6,7 +6,6 @@ import Card from '../components/card';
 
 import useScroll from '../customHooks/useScroll';
 import useLoading from '../customHooks/useLoading';
-import CommentList from '../components/commentList';
 
 import News from '../objects/News';
 
@@ -57,11 +56,11 @@ const Home = props => {
             onClickIncrease={increaseNewsLike}
             onClickDecrease={decreaseNewsLike}
             news={news}
+            commentList={commentList}
           />
         );
       })}
       {!(page === totalPage) && <LoadingSpinner />}
-      <CommentList commentList={commentList} />
     </>
   );
 };
