@@ -30,7 +30,7 @@ const Contents = props => {
   const [text, setText] = useState(`${shortText}`);
   const [moreValue, setMoreValue] = useState('더보기');
 
-  const moreBtn = () => {
+  const showMore = () => {
     if (text === content) {
       setText(textLengthOverCut(text, `${newsImg}`));
       setMoreValue('더보기');
@@ -49,9 +49,7 @@ const Contents = props => {
           size="small"
           value={moreValue}
           color="secondary"
-          onClick={() => {
-            moreBtn();
-          }}
+          onClick={showMore}
         />
         <Button
           size="small"
