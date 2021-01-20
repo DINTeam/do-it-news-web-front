@@ -12,32 +12,32 @@ const Header = props => {
         <div className={`${styles.category}`}>
           <Link href="/">
             <a href="./" className={`${styles.categoryFont}`}>
-              <h>정치</h>
+              <h1>정치</h1>
             </a>
           </Link>
           <Link href="/">
             <a href="./" className={`${styles.categoryFont}`}>
-              <h>경제</h>
+              <h1>경제</h1>
             </a>
           </Link>
           <Link href="/">
             <a href="./" className={`${styles.categoryFont}`}>
-              <h>사회</h>
+              <h1>사회</h1>
             </a>
           </Link>
           <Link href="/">
             <a href="./" className={`${styles.categoryFont}`}>
-              <h>국제</h>
+              <h1>국제</h1>
             </a>
           </Link>
           <Link href="/">
             <a href="./" className={`${styles.categoryFont}`}>
-              <h>문화</h>
+              <h1>문화</h1>
             </a>
           </Link>
           <Link href="/">
             <a href="./" className={`${styles.categoryFont}`}>
-              <h>스포츠</h>
+              <h1>스포츠</h1>
             </a>
           </Link>
         </div>

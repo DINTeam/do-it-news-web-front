@@ -22,19 +22,19 @@ const Logo = props => {
         <Link href="/main">
           <a href="./">
             <div className={`${styles.logo}`}>
-              <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>
+              <h1 className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>
                 Do
-              </h>
-              <h className={`${sizeStyle} ${styles.primaryColor}`}> it N</h>
-              <h className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h>
+              </h1>
+              <h1 className={`${sizeStyle} ${styles.primaryColor}`}> it N</h1>
+              <h1 className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h1>
             </div>
           </a>
         </Link>
       ) : (
         <div className={`${styles.logo}`}>
-          <h className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>Do</h>
-          <h className={`${sizeStyle} ${styles.primaryColor}`}> it N</h>
-          <h className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h>
+          <h1 className={`${sizeStyle}  ${styles.primaryColorFontBlack}`}>Do</h1>
+          <h1 className={`${sizeStyle} ${styles.primaryColor}`}> it N</h1>
+          <h1 className={`${sizeStyle} ${styles.secondaryColor}`}>ews</h1>
         </div>
       )}
     </div>
