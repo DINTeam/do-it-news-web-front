@@ -28,7 +28,7 @@ const Like = props => {
       >
         <div className={`${styles.increaseBtn}`} />
       </button>
-      <h className={`${styles.likeNumber}`}>{numberOfLikes}</h>
+      <h1 className={`${styles.likeNumber}`}>{numberOfLikes}</h1>
       <button
         type="button"
         onClick={decreaseNumber}

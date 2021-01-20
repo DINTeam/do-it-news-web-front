@@ -1,6 +1,6 @@
 .logo {
     user-select: none;
-    display: inline-block;
+    display: flex;
     margin: 1px 1px;
 }
 
