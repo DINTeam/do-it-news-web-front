@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import styles from './roundCheckBox.css';
+import styles from './roundCheckBox.module.css';
 
 const getSizeStyle = size => {
   if (size === 'small') return styles.small;
