@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import Comment from './comment';
 
 import styles from './commentList.module.css';
+import Button from '../../button';
 
 const CommentList = props => {
   const { commentList } = props;
@@ -18,6 +19,13 @@ const CommentList = props => {
           date={comment.date}
         />
       ))}
+      <div className={`${styles.moreBtn}`}>
+        <Button
+          size="small"
+          value="댓글 더보기"
+          color="secondary"
+        />
+      </div>
     </div>
   );
 };

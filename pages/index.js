@@ -22,6 +22,10 @@ const Home = () => {
   const [isEnd] = useScroll(LOADING_SPINNER_HEIGHT);
   const [newsListFetch] = useLoading(getNewsList);
 
+  const commentList = [
+    { userId: 'A', userName: 'user_A', comment: 'comment', date: '2021' },
+  ];
+
   const fetchNewsListAndSetState = async () => {
     const res = await newsListFetch(page + 1, 10);
     if (res.success) {
@@ -56,6 +60,7 @@ const Home = () => {
             onClickIncrease={increaseNewsLike}
             onClickDecrease={decreaseNewsLike}
             news={aNews}
+            commentList={commentList}
           />
         );
       })}
