@@ -1,7 +1,10 @@
-export const setItem = (key, value) => sessionStorage.setItem(key, value);
+const isServer = () => typeof window === 'undefined';
 
-export const getItem = key => sessionStorage.getItem(key);
+export const setItem = (key, value) =>
+  !isServer() && sessionStorage.setItem(key, value);
 
-export const removeItem = key => sessionStorage.removeItem(key);
+export const getItem = key => !isServer() && sessionStorage.getItem(key);
 
-export const removeAllItem = () => sessionStorage.clear();
+export const removeItem = key => !isServer() && sessionStorage.removeItem(key);
+
+export const removeAllItem = () => !isServer() && sessionStorage.clear();
