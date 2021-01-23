@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Router from 'next/router';
 
@@ -7,15 +7,17 @@ import * as auth from '../../helpers/auth';
 
 const withAuthentication = WrappedComponent => {
   const RequiresAuthentication = () => {
-    useEffect(() => {
-      if (!auth.getStateSignIn()) Router.push('/signin');
-    });
+    const [stateSsrDone, setStateSsrDone] = useState(false);
+    const [satteSignIn] = useState(auth.getStateSignIn());
 
-    return auth.getStateSignIn() ? (
-      <WrappedComponent stateSignIn={auth.getStateSignIn()} />
-    ) : (
-      <LoadingSpinner />
-    );
+    useEffect(() => setStateSsrDone(true), []);
+
+    useEffect(() => {
+      if (!satteSignIn) Router.push('/signin');
+    }, []);
+
+    if (!(stateSsrDone && satteSignIn)) return <LoadingSpinner />;
+    return <WrappedComponent stateSignIn={satteSignIn} />;
   };
 
   return RequiresAuthentication;
