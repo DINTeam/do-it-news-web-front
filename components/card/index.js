@@ -12,12 +12,8 @@ import { getCommentList } from '../../api/comment';
 import News from '../../objects/News';
 import CommentList from './commentList';
 
-import useScroll from '../../customHooks/useScroll';
-import useLoading from '../../customHooks/useLoading';
-
 import Comment from '../../objects/Comment';
-
-const LOADING_SPINNER_HEIGHT = 60;
+import useLoading from '../../customHooks/useLoading';
 
 const Card = props => {
   const { onClickIncrease, onClickDecrease, news } = props;
@@ -25,31 +21,36 @@ const Card = props => {
 
   const [success, setSuccess] = useState(true);
   const [commentList, setCommentList] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(2);
+  const [commentPage, setCommentPage] = useState(1);
+  const [totalCommentPage, setTotalCommentPage] = useState(2);
 
-  const [isEnd] = useScroll(LOADING_SPINNER_HEIGHT);
-  const [commentListFetch] = useLoading(getCommentList);
+  const [isEndComment, setIsEndComment] = useState(false);
+  const [commentListFetch, stateCommentLoading] = useLoading(
+    getCommentList.bind(news.newsId),
+  );
 
   const fetchCommentListAndSetState = async () => {
-    const res = await commentListFetch(page + 1, 5);
+    const res = await commentListFetch(news.newsId, commentPage + 5, 5);
     if (res.success) {
       const commentObject = res.commentList.map(
         comment => new Comment(comment),
       );
-      setCommentList([...commentList, ...commentObject]);
-      setPage(res.page);
-      setTotalPage(res.totalPage);
+      setCommentList([...commentObject]);
+      setCommentPage(res.page);
+      setTotalCommentPage(res.totalPage);
+      if (commentPage < totalCommentPage) {
+        setIsEndComment(true);
+      }
     } else {
       setSuccess(res.success);
     }
   };
 
   useEffect(() => {
-    if (isEnd && page < totalPage) fetchCommentListAndSetState();
-  }, [isEnd]);
-
-  useEffect(fetchCommentListAndSetState, []);
+    if (stateShowComment && !isEndComment) {
+      fetchCommentListAndSetState();
+    }
+  });
 
   const showHideComment = () => {
     setStateShowComment(!stateShowComment);
@@ -83,6 +84,7 @@ const Card = props => {
           newsId={news.newsId}
         />
       </div>
+      {stateCommentLoading && <span>Loading...</span>}
       {commentList && stateShowComment && (
         <CommentList commentList={commentList} />
       )}

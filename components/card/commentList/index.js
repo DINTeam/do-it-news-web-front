@@ -15,10 +15,7 @@ const CommentList = props => {
         <Comment
           // key는 commentId로 바꿀 예정
           key={Math.floor(Math.random() * 1000000)}
-          userName={aComment.userName}
-          userId={aComment.userId}
-          comment={aComment.comment}
-          date={aComment.date}
+          comment={aComment}
         />
       ))}
       <div className={`${styles.moreBtn}`}>
