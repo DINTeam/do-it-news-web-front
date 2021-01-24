@@ -7,7 +7,9 @@ import Button from '../../button';
 import ObjectComment from '../../../objects/Comment';
 
 const CommentList = props => {
-  const { commentList } = props;
+  const { commentList, commentSuccess } = props;
+
+  if (!commentSuccess) return <div>Error</div>;
 
   return (
     <div className={`${styles.commentList} ${commentList}`}>
@@ -28,6 +30,7 @@ const CommentList = props => {
 CommentList.propTypes = {
   commentList: PropTypes.arrayOf(PropTypes.instanceOf(ObjectComment).isRequired)
     .isRequired,
+  commentSuccess: PropTypes.bool.isRequired,
 };
 
 export default CommentList;

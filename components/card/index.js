@@ -14,23 +14,24 @@ import CommentList from './commentList';
 
 import Comment from '../../objects/Comment';
 import useLoading from '../../customHooks/useLoading';
+import LoadingSpinner from "../loadingSpinner";
 
 const Card = props => {
   const { onClickIncrease, onClickDecrease, news } = props;
   const [stateShowComment, setStateShowComment] = useState(false);
 
-  const [success, setSuccess] = useState(true);
+  const [commentSuccess, setCommentSuccess] = useState(true);
   const [commentList, setCommentList] = useState([]);
   const [commentPage, setCommentPage] = useState(1);
   const [totalCommentPage, setTotalCommentPage] = useState(2);
 
   const [isEndComment, setIsEndComment] = useState(false);
   const [commentListFetch, stateCommentLoading] = useLoading(
-    getCommentList.bind(news.newsId),
+    getCommentList.bind(null, news.newsId),
   );
 
   const fetchCommentListAndSetState = async () => {
-    const res = await commentListFetch(news.newsId, commentPage + 5, 5);
+    const res = await commentListFetch(commentPage + 1, 5);
     if (res.success) {
       const commentObject = res.commentList.map(
         comment => new Comment(comment),
@@ -38,11 +39,11 @@ const Card = props => {
       setCommentList([...commentObject]);
       setCommentPage(res.page);
       setTotalCommentPage(res.totalPage);
-      if (commentPage < totalCommentPage) {
+      if (commentPage <= totalCommentPage) {
         setIsEndComment(true);
       }
     } else {
-      setSuccess(res.success);
+      setCommentSuccess(res.success);
     }
   };
 
@@ -55,8 +56,6 @@ const Card = props => {
   const showHideComment = () => {
     setStateShowComment(!stateShowComment);
   };
-
-  if (!success) return <div>Error</div>;
 
   return (
     <div className={styles.card}>
@@ -84,9 +83,13 @@ const Card = props => {
           newsId={news.newsId}
         />
       </div>
-      {stateCommentLoading && <span>Loading...</span>}
+
+      {stateCommentLoading && <LoadingSpinner />}
       {commentList && stateShowComment && (
-        <CommentList commentList={commentList} />
+        <CommentList
+          commentList={commentList}
+          commentSuccess={commentSuccess}
+        />
       )}
     </div>
   );
