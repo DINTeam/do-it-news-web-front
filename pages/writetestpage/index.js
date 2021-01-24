@@ -12,7 +12,6 @@ const WriteTestPage = () => {
   return (
     <div>
       <WysiwygEditor
-        theme="bubble"
         value={contents}
         onChange={handleContents}
         placeholder="내용을 입력해 주세요."
