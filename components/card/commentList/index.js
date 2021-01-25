@@ -4,41 +4,33 @@ import Comment from './comment';
 import styles from './commentList.module.css';
 import Button from '../../button';
 
+import ObjectComment from '../../../objects/Comment';
+
 const CommentList = props => {
-  const { commentList } = props;
+  const { commentList, commentSuccess } = props;
+
+  if (!commentSuccess) return <div>Error</div>;
 
   return (
     <div className={`${styles.commentList} ${commentList}`}>
-      {commentList.map(comment => (
+      {commentList.map(aComment => (
         <Comment
           // key는 commentId로 바꿀 예정
           key={Math.floor(Math.random() * 1000000)}
-          userName={comment.userName}
-          userId={comment.userId}
-          comment={comment.comment}
-          date={comment.date}
+          comment={aComment}
         />
       ))}
       <div className={`${styles.moreBtn}`}>
-        <Button
-          size="small"
-          value="댓글 더보기"
-          color="secondary"
-        />
+        <Button size="small" value="댓글 더보기" color="secondary" />
       </div>
     </div>
   );
 };
 
 CommentList.propTypes = {
-  commentList: PropTypes.arrayOf(
-    PropTypes.shape({
-      userName: PropTypes.string.isRequired,
-      userId: PropTypes.string.isRequired,
-      comment: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+  commentList: PropTypes.arrayOf(PropTypes.instanceOf(ObjectComment).isRequired)
+    .isRequired,
+  commentSuccess: PropTypes.bool.isRequired,
 };
 
 export default CommentList;

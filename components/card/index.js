@@ -1,18 +1,57 @@
 import PropTypes from 'prop-types';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './card.module.css';
 import Header from './header';
 import NewsImage from './newsImage';
 import Contents from './contents';
 import Like from './like';
 
+import { getCommentList } from '../../api/comment';
+
 import News from '../../objects/News';
 import CommentList from './commentList';
 
+import Comment from '../../objects/Comment';
+import useLoading from '../../customHooks/useLoading';
+import LoadingSpinner from "../loadingSpinner";
+
 const Card = props => {
-  const { onClickIncrease, onClickDecrease, news, commentList } = props;
+  const { onClickIncrease, onClickDecrease, news } = props;
   const [stateShowComment, setStateShowComment] = useState(false);
+
+  const [commentSuccess, setCommentSuccess] = useState(true);
+  const [commentList, setCommentList] = useState([]);
+  const [commentPage, setCommentPage] = useState(1);
+  const [totalCommentPage, setTotalCommentPage] = useState(2);
+
+  const [isEndComment, setIsEndComment] = useState(false);
+  const [commentListFetch, stateCommentLoading] = useLoading(
+    getCommentList.bind(null, news.newsId),
+  );
+
+  const fetchCommentListAndSetState = async () => {
+    const res = await commentListFetch(commentPage + 1, 5);
+    if (res.success) {
+      const commentObject = res.commentList.map(
+        comment => new Comment(comment),
+      );
+      setCommentList([...commentObject]);
+      setCommentPage(res.page);
+      setTotalCommentPage(res.totalPage);
+      if (commentPage <= totalCommentPage) {
+        setIsEndComment(true);
+      }
+    } else {
+      setCommentSuccess(res.success);
+    }
+  };
+
+  useEffect(() => {
+    if (stateShowComment && !isEndComment) {
+      fetchCommentListAndSetState();
+    }
+  });
 
   const showHideComment = () => {
     setStateShowComment(!stateShowComment);
@@ -44,8 +83,13 @@ const Card = props => {
           newsId={news.newsId}
         />
       </div>
+
+      {stateCommentLoading && <LoadingSpinner />}
       {commentList && stateShowComment && (
-        <CommentList commentList={commentList} />
+        <CommentList
+          commentList={commentList}
+          commentSuccess={commentSuccess}
+        />
       )}
     </div>
   );
@@ -55,18 +99,6 @@ Card.propTypes = {
   onClickIncrease: PropTypes.func.isRequired,
   onClickDecrease: PropTypes.func.isRequired,
   news: PropTypes.instanceOf(News).isRequired,
-  commentList: PropTypes.arrayOf(
-    PropTypes.shape({
-      userName: PropTypes.string.isRequired,
-      userId: PropTypes.string.isRequired,
-      comment: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-    }).isRequired,
-  ),
-};
-
-Card.defaultProps = {
-  commentList: null,
 };
 
 export default Card;
