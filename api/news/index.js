@@ -157,6 +157,21 @@ export const getNews = newsId => {
   return fetch.get(`fakeFetch.com/news/${newsId}`, 'get', getNewsResponseData);
 };
 
+const putNewsResponseData = {
+  success: true,
+};
+
+export const putNews = news => {
+  return fetch.get(
+    'fakeFetch.com/news',
+    {
+      newsTitle: news.newsName,
+      newsContents: news.newsContent,
+    },
+    putNewsResponseData,
+  );
+};
+
 const putImageResponseData = {
   success: true,
   imageUrl:
