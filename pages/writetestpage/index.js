@@ -27,7 +27,7 @@ const WriteTestPage = () => {
     event.preventDefault();
     if (isEmptyInput(title) || isEmptyInput(contents)) return;
 
-    const news = new News({ newsName: title, newsContent: contents });
+    const news = new News({ newsTitle: title, newsContents: contents });
     const response = await putNewsFetch(news);
 
     if (response.success) Router.push('/');

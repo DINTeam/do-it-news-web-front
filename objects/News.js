@@ -1,26 +1,26 @@
 class News {
   constructor(aNews = {}) {
     this._newsId = aNews.newsId || '';
-    this._newsName = aNews.newsName || '';
+    this._newsTitle = aNews.newsTitle || '';
     this._author = aNews.author || '';
     this._date = aNews.date || '';
     this._views = aNews.views || 0;
     this._company = aNews.company || '';
     this._profileImg = aNews.profileImg || '';
     this._likes = aNews.likes || 0;
-    this._newsContent = aNews.newsContent || '';
+    this._newsContents = aNews.newsContents || '';
   }
 
   get newsId() {
     return this._newsId;
   }
 
-  get newsName() {
-    return this._newsName;
+  get newsTitle() {
+    return this._newsTitle;
   }
 
-  set newsName(newNewsName) {
-    this._newsName = newNewsName;
+  set newsTitle(newNewsTitle) {
+    this._newsTitle = newNewsTitle;
   }
 
   get author() {
@@ -47,12 +47,12 @@ class News {
     return this._likes;
   }
 
-  get newsContent() {
-    return this._newsContent;
+  get newsContents() {
+    return this._newsContents;
   }
 
-  set newsContent(newNewsContent) {
-    this._newsContent = newNewsContent;
+  set newsContents(newNewsContents) {
+    this._newsContents = newNewsContents;
   }
 }
 
