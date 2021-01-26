@@ -14,7 +14,7 @@ import CommentList from './commentList';
 
 import Comment from '../../objects/Comment';
 import useLoading from '../../customHooks/useLoading';
-import LoadingSpinner from "../loadingSpinner";
+import LoadingSpinner from '../loadingSpinner';
 
 const Card = props => {
   const { onClickIncrease, onClickDecrease, news } = props;
@@ -70,7 +70,7 @@ const Card = props => {
       {news.newsImg && <NewsImage newsImg={news.newsImg} />}
       <div className={styles.bottomArea}>
         <Contents
-          content={news.newsContent}
+          content={news.newsContents}
           newsImg={news.newsImg || ''}
           showHideComment={showHideComment}
           stateShowComment={stateShowComment}
