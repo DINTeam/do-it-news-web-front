@@ -3,6 +3,7 @@ import Router from 'next/router';
 
 import withAuthentication from '../../components/withAuthentication';
 
+import Header from '../../components/header';
 import LoadingSpinner from '../../components/loadingSpinner';
 import Textfield from '../../components/textfield';
 import WysiwygEditor from '../../components/wysiwygEditor';
@@ -34,6 +35,7 @@ const WriteTestPage = () => {
 
   return (
     <>
+      <Header />
       {statePutNewsFetchLoading && <LoadingSpinner />}
       <form onSubmit={handleSubmit}>
         <Textfield
