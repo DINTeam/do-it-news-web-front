@@ -156,3 +156,32 @@ const getNewsResponseData = {
 export const getNews = newsId => {
   return fetch.get(`fakeFetch.com/news/${newsId}`, 'get', getNewsResponseData);
 };
+
+const putNewsResponseData = {
+  success: true,
+};
+
+export const putNews = news => {
+  return fetch.get(
+    'fakeFetch.com/news',
+    {
+      newsTitle: news.newsName,
+      newsContents: news.newsContent,
+    },
+    putNewsResponseData,
+  );
+};
+
+const putImageResponseData = {
+  success: true,
+  imageUrl:
+    'https://kangjiji.github.io/this-is-me/static/media/react.731edcfc.png',
+};
+
+export const putImage = image => {
+  return fetch.put(
+    'fakeFetch.com/api/image/upload',
+    image,
+    putImageResponseData,
+  );
+};
