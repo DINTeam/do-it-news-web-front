@@ -24,7 +24,6 @@ const Card = props => {
   const [commentList, setCommentList] = useState([]);
   const [commentPage, setCommentPage] = useState(1);
   const [totalCommentPage, setTotalCommentPage] = useState(2);
-
   const [isEndComment, setIsEndComment] = useState(false);
   const [commentListFetch, stateCommentLoading] = useLoading(
     getCommentList.bind(null, news.newsId),
@@ -55,6 +54,10 @@ const Card = props => {
 
   const showHideComment = () => {
     setStateShowComment(!stateShowComment);
+  };
+
+  const showMoreComment = () => {
+    fetchCommentListAndSetState();
   };
 
   return (
@@ -89,6 +92,7 @@ const Card = props => {
         <CommentList
           commentList={commentList}
           commentSuccess={commentSuccess}
+          showMoreComment={showMoreComment}
         />
       )}
     </div>
