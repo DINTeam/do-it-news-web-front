@@ -5,9 +5,16 @@ import styles from './commentList.module.css';
 import Button from '../../button';
 
 import ObjectComment from '../../../objects/Comment';
+import LoadingSpinner from '../../loadingSpinner';
 
 const CommentList = props => {
-  const { commentList, commentSuccess, showMoreComment } = props;
+  const {
+    commentList,
+    commentSuccess,
+    showMoreComment,
+    isEndComment,
+    stateCommentLoading,
+  } = props;
 
   if (!commentSuccess) return <div>Error</div>;
 
@@ -20,14 +27,17 @@ const CommentList = props => {
           comment={aComment}
         />
       ))}
-      <div className={`${styles.moreBtn}`}>
-        <Button
-          size="small"
-          value="댓글 더보기"
-          color="secondary"
-          onClick={showMoreComment}
-        />
-      </div>
+      {stateCommentLoading && <LoadingSpinner />}
+      {isEndComment || (
+        <div className={`${styles.moreBtn}`}>
+          <Button
+            size="small"
+            value="댓글 더보기"
+            color="secondary"
+            onClick={showMoreComment}
+          />
+        </div>
+      )}
     </div>
   );
 };
@@ -37,6 +47,8 @@ CommentList.propTypes = {
     .isRequired,
   commentSuccess: PropTypes.bool.isRequired,
   showMoreComment: PropTypes.func.isRequired,
+  isEndComment: PropTypes.bool.isRequired,
+  stateCommentLoading: PropTypes.bool.isRequired,
 };
 
 export default CommentList;

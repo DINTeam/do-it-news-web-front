@@ -19,10 +19,13 @@ import LoadingSpinner from '../loadingSpinner';
 const Card = props => {
   const { onClickIncrease, onClickDecrease, news } = props;
   const [stateShowComment, setStateShowComment] = useState(false);
+  const [stateShowFirstCommentPage, setStateShowFirstCommentPage] = useState(
+    false,
+  );
 
   const [commentSuccess, setCommentSuccess] = useState(true);
   const [commentList, setCommentList] = useState([]);
-  const [commentPage, setCommentPage] = useState(1);
+  const [commentPage, setCommentPage] = useState(0);
   const [totalCommentPage, setTotalCommentPage] = useState(2);
   const [isEndComment, setIsEndComment] = useState(false);
   const [commentListFetch, stateCommentLoading] = useLoading(
@@ -30,7 +33,7 @@ const Card = props => {
   );
 
   const fetchCommentListAndSetState = async () => {
-    const res = await commentListFetch(commentPage + 1, 5);
+    const res = await commentListFetch(commentPage + 1);
     if (res.success) {
       const commentObject = res.commentList.map(
         comment => new Comment(comment),
@@ -38,22 +41,21 @@ const Card = props => {
       setCommentList([...commentObject]);
       setCommentPage(res.page);
       setTotalCommentPage(res.totalPage);
-      if (commentPage <= totalCommentPage) {
+      if (commentPage === totalCommentPage) {
         setIsEndComment(true);
+        alert('마지막 댓글입니다.');
       }
     } else {
       setCommentSuccess(res.success);
     }
   };
 
-  useEffect(() => {
-    if (stateShowComment && !isEndComment) {
-      fetchCommentListAndSetState();
-    }
-  });
-
   const showHideComment = () => {
     setStateShowComment(!stateShowComment);
+    if (!stateShowComment && !stateShowFirstCommentPage) {
+      fetchCommentListAndSetState();
+      setStateShowFirstCommentPage(true);
+    }
   };
 
   const showMoreComment = () => {
@@ -87,12 +89,13 @@ const Card = props => {
         />
       </div>
 
-      {stateCommentLoading && <LoadingSpinner />}
       {commentList && stateShowComment && (
         <CommentList
           commentList={commentList}
           commentSuccess={commentSuccess}
           showMoreComment={showMoreComment}
+          isEndComment={isEndComment}
+          stateCommentLoading={stateCommentLoading}
         />
       )}
     </div>

@@ -1,6 +1,44 @@
 import fetch from '../../helpers/fakeFetch';
 
-const commentList = [
+const commentListFirstPage = [
+  {
+    commentId: '1',
+    userName: 'user_A',
+    userId: 'id_A',
+    comment: 'A 사용자의 댓글입니다.',
+    date: '2021-01-20',
+  },
+  {
+    commentId: '2',
+    userName: 'user_B',
+    userId: 'id_B',
+    comment: 'B 사용자의 댓글입니다.',
+    date: '2021-01-20',
+  },
+  {
+    commentId: '3',
+    userName: 'user_C',
+    userId: 'id_C',
+    comment: 'C 사용자의 댓글입니다.',
+    date: '2021-01-20',
+  },
+  {
+    commentId: '4',
+    userName: 'user_D',
+    userId: 'id_D',
+    comment: 'D 사용자의 댓글입니다.',
+    date: '2021-01-20',
+  },
+  {
+    commentId: '5',
+    userName: 'user_E',
+    userId: 'id_E',
+    comment: 'E 사용자의 댓글입니다.',
+    date: '2021-01-20',
+  },
+];
+
+const commentListSecondPage = [
   {
     commentId: '1',
     userName: 'user_A',
@@ -73,43 +111,36 @@ const commentList = [
   },
 ];
 
-const limitComment = [];
-
-function getLimitComment(page, amount) {
-  if (page === 1) {
-    for (let i = 0; i < amount; i += 1) {
-      limitComment.push(commentList[i]);
-    }
-  } else {
-    for (
-      let i = page + (page * 4 - amount);
-      i < page + (page * 4 - amount) + amount;
-      i += 1
-    ) {
-      limitComment.push(commentList[i]);
-    }
-  }
-  return limitComment;
-}
-
-const getCommentListResponseData = {
+const getCommentListResponseFirstPageData = {
   success: true,
   newsId: 1,
   page: 1,
   amount: 5,
   totalPage: 2,
-  commentList: [],
+  commentList: commentListFirstPage,
 };
-getCommentListResponseData.commentList = getLimitComment(
-  getCommentListResponseData.page,
-  getCommentListResponseData.amount,
-);
+
+const getCommentListResponseDataSecondPageData = {
+  success: true,
+  newsId: 1,
+  page: 2,
+  amount: 5,
+  totalPage: 2,
+  commentList: commentListSecondPage,
+};
 
 export const getCommentList = (newsId, page, amount) => {
+  if (page === 1) {
+    return fetch.get(
+      'fakeFetch.com/comment/list',
+      `newsId=${newsId}&page=${page}&amount=${amount}`,
+      getCommentListResponseFirstPageData,
+    );
+  }
   return fetch.get(
     'fakeFetch.com/comment/list',
     `newsId=${newsId}&page=${page}&amount=${amount}`,
-    getCommentListResponseData,
+    getCommentListResponseDataSecondPageData,
   );
 };
 
