@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
-import Comment from './comment';
 
-import styles from './commentList.module.css';
+import styles from './comment.module.css';
 import Button from '../../button';
 
 import ObjectComment from '../../../objects/Comment';
@@ -21,11 +20,17 @@ const CommentList = props => {
   return (
     <div className={`${styles.commentList} ${commentList}`}>
       {commentList.map(aComment => (
-        <Comment
-          // key는 commentId로 바꿀 예정
+        <div
           key={Math.floor(Math.random() * 1000000)}
-          comment={aComment}
-        />
+          className={`${styles.commentArea}`}
+        >
+          <div className={`${styles.commentUser}`}>
+            <div className={`${styles.userName}`}>{aComment.userName}</div>
+            <div className={`${styles.userId}`}>{aComment.userId}</div>
+          </div>
+          <div className={`${styles.comment}`}>{aComment.comment}</div>
+          <div className={`${styles.date}`}>{aComment.date}</div>
+        </div>
       ))}
       {stateCommentLoading && <LoadingSpinner />}
       {isEndComment || (

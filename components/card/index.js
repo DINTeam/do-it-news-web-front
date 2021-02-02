@@ -10,7 +10,7 @@ import Like from './like';
 import { getCommentList } from '../../api/comment';
 
 import News from '../../objects/News';
-import CommentList from './commentList';
+import CommentList from './comment';
 
 import Comment from '../../objects/Comment';
 import useLoading from '../../customHooks/useLoading';
