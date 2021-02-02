@@ -14,7 +14,6 @@ import CommentList from './comment';
 
 import Comment from '../../objects/Comment';
 import useLoading from '../../customHooks/useLoading';
-import LoadingSpinner from '../loadingSpinner';
 
 const Card = props => {
   const { onClickIncrease, onClickDecrease, news } = props;
@@ -38,9 +37,8 @@ const Card = props => {
       setCommentList(commentList.concat(...commentObject));
       setCommentPage(res.page);
       setTotalCommentPage(res.totalPage);
-      if (commentPage === totalCommentPage) {
+      if (commentPage === totalCommentPage - 1) {
         setIsEndComment(true);
-        alert('마지막 댓글입니다.');
       }
     } else {
       setCommentSuccess(res.success);
@@ -49,7 +47,7 @@ const Card = props => {
 
   const showHideComment = () => {
     setStateShowComment(!stateShowComment);
-    if (commentList) {
+    if (commentList.length === 0) {
       fetchCommentListAndSetState();
     }
   };
