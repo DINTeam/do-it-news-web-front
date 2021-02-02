@@ -38,7 +38,7 @@ const Card = props => {
       const commentObject = res.commentList.map(
         comment => new Comment(comment),
       );
-      setCommentList([...commentObject]);
+      setCommentList(commentList.concat(...commentObject));
       setCommentPage(res.page);
       setTotalCommentPage(res.totalPage);
       if (commentPage === totalCommentPage) {

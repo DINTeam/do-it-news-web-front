@@ -40,41 +40,6 @@ const commentListFirstPage = [
 
 const commentListSecondPage = [
   {
-    commentId: '1',
-    userName: 'user_A',
-    userId: 'id_A',
-    comment: 'A 사용자의 댓글입니다.',
-    date: '2021-01-20',
-  },
-  {
-    commentId: '2',
-    userName: 'user_B',
-    userId: 'id_B',
-    comment: 'B 사용자의 댓글입니다.',
-    date: '2021-01-20',
-  },
-  {
-    commentId: '3',
-    userName: 'user_C',
-    userId: 'id_C',
-    comment: 'C 사용자의 댓글입니다.',
-    date: '2021-01-20',
-  },
-  {
-    commentId: '4',
-    userName: 'user_D',
-    userId: 'id_D',
-    comment: 'D 사용자의 댓글입니다.',
-    date: '2021-01-20',
-  },
-  {
-    commentId: '5',
-    userName: 'user_E',
-    userId: 'id_E',
-    comment: 'E 사용자의 댓글입니다.',
-    date: '2021-01-20',
-  },
-  {
     commentId: '6',
     userName: 'user_F',
     userId: 'id_F',
