@@ -19,9 +19,6 @@ import LoadingSpinner from '../loadingSpinner';
 const Card = props => {
   const { onClickIncrease, onClickDecrease, news } = props;
   const [stateShowComment, setStateShowComment] = useState(false);
-  const [stateShowFirstCommentPage, setStateShowFirstCommentPage] = useState(
-    false,
-  );
 
   const [commentSuccess, setCommentSuccess] = useState(true);
   const [commentList, setCommentList] = useState([]);
@@ -33,7 +30,7 @@ const Card = props => {
   );
 
   const fetchCommentListAndSetState = async () => {
-    const res = await commentListFetch(commentPage + 1);
+    const res = await commentListFetch(commentPage + 1, 5);
     if (res.success) {
       const commentObject = res.commentList.map(
         comment => new Comment(comment),
@@ -52,9 +49,8 @@ const Card = props => {
 
   const showHideComment = () => {
     setStateShowComment(!stateShowComment);
-    if (!stateShowComment && !stateShowFirstCommentPage) {
+    if (commentList) {
       fetchCommentListAndSetState();
-      setStateShowFirstCommentPage(true);
     }
   };
 
