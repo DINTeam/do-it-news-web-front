@@ -33,7 +33,7 @@ const CommentList = props => {
         </div>
       ))}
       {stateCommentLoading && <LoadingSpinner />}
-      {isEndComment || (
+      {isEndComment || stateCommentLoading || (
         <div className={`${styles.moreBtn}`}>
           <Button
             size="small"
