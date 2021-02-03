@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './card.module.css';
 import Header from './header';
 import NewsImage from './newsImage';
@@ -10,11 +10,10 @@ import Like from './like';
 import { getCommentList } from '../../api/comment';
 
 import News from '../../objects/News';
-import CommentList from './commentList';
+import CommentList from './comment';
 
 import Comment from '../../objects/Comment';
 import useLoading from '../../customHooks/useLoading';
-import LoadingSpinner from '../loadingSpinner';
 
 const Card = props => {
   const { onClickIncrease, onClickDecrease, news } = props;
@@ -22,9 +21,8 @@ const Card = props => {
 
   const [commentSuccess, setCommentSuccess] = useState(true);
   const [commentList, setCommentList] = useState([]);
-  const [commentPage, setCommentPage] = useState(1);
+  const [commentPage, setCommentPage] = useState(0);
   const [totalCommentPage, setTotalCommentPage] = useState(2);
-
   const [isEndComment, setIsEndComment] = useState(false);
   const [commentListFetch, stateCommentLoading] = useLoading(
     getCommentList.bind(null, news.newsId),
@@ -36,10 +34,10 @@ const Card = props => {
       const commentObject = res.commentList.map(
         comment => new Comment(comment),
       );
-      setCommentList([...commentObject]);
+      setCommentList(commentList.concat(...commentObject));
       setCommentPage(res.page);
       setTotalCommentPage(res.totalPage);
-      if (commentPage <= totalCommentPage) {
+      if (commentPage === totalCommentPage - 1) {
         setIsEndComment(true);
       }
     } else {
@@ -47,14 +45,15 @@ const Card = props => {
     }
   };
 
-  useEffect(() => {
-    if (stateShowComment && !isEndComment) {
-      fetchCommentListAndSetState();
-    }
-  });
-
   const showHideComment = () => {
     setStateShowComment(!stateShowComment);
+    if (commentList.length === 0) {
+      fetchCommentListAndSetState();
+    }
+  };
+
+  const showMoreComment = () => {
+    fetchCommentListAndSetState();
   };
 
   return (
@@ -84,11 +83,13 @@ const Card = props => {
         />
       </div>
 
-      {stateCommentLoading && <LoadingSpinner />}
       {commentList && stateShowComment && (
         <CommentList
           commentList={commentList}
           commentSuccess={commentSuccess}
+          showMoreComment={showMoreComment}
+          isEndComment={isEndComment}
+          stateCommentLoading={stateCommentLoading}
         />
       )}
     </div>
