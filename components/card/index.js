@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './card.module.css';
 import Header from './header';
 import NewsImage from './newsImage';
