@@ -57,41 +57,43 @@ const Card = props => {
   };
 
   return (
-    <div className={styles.card}>
-      <Header
-        profileImg={news.profileImg}
-        author={news.author}
-        company={news.company}
-        date={news.date}
-        views={news.views}
-      />
-      <div className={styles.title}>{news.title}</div>
-      {news.newsImg && <NewsImage newsImg={news.newsImg} />}
-      <div className={styles.bottomArea}>
-        <Contents
-          content={news.newsContents}
-          newsImg={news.newsImg || ''}
-          showHideComment={showHideComment}
-          stateShowComment={stateShowComment}
-          NoComment={commentList === null}
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <Header
+          profileImg={news.profileImg}
+          author={news.author}
+          company={news.company}
+          date={news.date}
+          views={news.views}
         />
-        <Like
-          defaultLike={news.likes}
-          onClickIncrease={onClickIncrease}
-          onClickDecrease={onClickDecrease}
-          newsId={news.newsId}
-        />
-      </div>
+        <div className={styles.title}>{news.title}</div>
+        {news.newsImg && <NewsImage newsImg={news.newsImg} />}
+        <div className={styles.bottomArea}>
+          <Contents
+            content={news.newsContents}
+            newsImg={news.newsImg || ''}
+            showHideComment={showHideComment}
+            stateShowComment={stateShowComment}
+            NoComment={commentList === null}
+          />
+          <Like
+            defaultLike={news.likes}
+            onClickIncrease={onClickIncrease}
+            onClickDecrease={onClickDecrease}
+            newsId={news.newsId}
+          />
+        </div>
 
-      {commentList && stateShowComment && (
-        <CommentList
-          commentList={commentList}
-          commentSuccess={commentSuccess}
-          showMoreComment={showMoreComment}
-          isEndComment={isEndComment}
-          stateCommentLoading={stateCommentLoading}
-        />
-      )}
+        {commentList && stateShowComment && (
+          <CommentList
+            commentList={commentList}
+            commentSuccess={commentSuccess}
+            showMoreComment={showMoreComment}
+            isEndComment={isEndComment}
+            stateCommentLoading={stateCommentLoading}
+          />
+        )}
+      </div>
     </div>
   );
 };
