@@ -1,0 +1,33 @@
+.myPageWrap{
+    background: #E5E5E5;
+    padding-top: 50px;
+    height: 10000px;
+}
+
+.myPage {
+    width: 1046px;
+    height: 1220px;
+    margin: 0 auto;
+    background: white;
+}
+
+.title{
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px 0 20px 20px;
+}
+
+.myPage button{
+    width: 50%;
+    height: 44px;
+    font-size: 16px;
+    border-radius: 20px 20px 0px 0px;
+    border: none;
+    outline: none;
+}
+
+.active{
+    font-size: 1212px;
+    background: #3976C9;
+    color: #FFFFFF;
+}
